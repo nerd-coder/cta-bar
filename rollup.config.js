@@ -5,6 +5,7 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import sveltePreprocess from 'svelte-preprocess'
 import typescript from '@rollup/plugin-typescript'
+import svg from 'rollup-plugin-svg'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -50,6 +51,7 @@ export default {
     }),
     resolve({ browser: true, dedupe: ['svelte'] }),
     commonjs(),
+    svg({ base64: true }),
     typescript({ sourceMap: !production }),
     !production && serve(),
     !production && livereload('public'),

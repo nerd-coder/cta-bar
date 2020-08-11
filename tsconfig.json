@@ -5,6 +5,7 @@
     "allowJs": true,
     "checkJs": true,
     "noEmit": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   }
 }
