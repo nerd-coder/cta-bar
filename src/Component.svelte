@@ -1,21 +1,17 @@
 <script lang="ts">
-  import zaloSvg from './img/zalo.svg'
-  import phoneSvg from './img/phone.svg'
-  import whatsappSvg from './img/whatsapp.svg'
-  import wechatSvg from './img/wechat.svg'
+  import ZaloSvg from './img/zalo.svg'
+  import PhoneSvg from './img/phone.svg'
+  import WhatsAppSvg from './img/whatsapp.svg'
+  import WeChatSvg from './img/wechat.svg'
 
-  export let callLabel = 'Call'
-  export let callLink = 'tel:+84999999999'
-  export let callIcon = phoneSvg
+  export let phoneLabel = 'Call'
+  export let phoneLink = 'tel:+84999999999'
   export let zaloLabel = 'Zalo'
   export let zaloLink = 'https://zalo.me'
-  export let zaloIcon = zaloSvg
-  export let wappLabel = 'WhatsApp'
-  export let wappLink = 'https://whatsapp.com'
-  export let wappIcon = whatsappSvg
-  export let wechLabel = 'WeChat'
-  export let wechLink = 'https://wechat.com'
-  export let wechIcon = wechatSvg
+  export let whatsAppLabel = 'WhatsApp'
+  export let whatsAppLink = 'https://whatsapp.com'
+  export let weChatLabel = 'WeChat'
+  export let weChatLink = 'https://wechat.com'
 </script>
 
 <style lang="scss">
@@ -50,27 +46,43 @@
 
 <ul>
   <li>
-    <a alt={callLabel} href={callLink}>
-      <img src={callIcon} alt={callLabel} />
-      <span>{callLabel}</span>
+    <a alt={phoneLabel} href={phoneLink}>
+      <div class="icon">
+        <slot name="phoneIcon">
+          <PhoneSvg />
+        </slot>
+      </div>
+      <span>{phoneLabel}</span>
     </a>
   </li>
   <li>
     <a alt={zaloLabel} href={zaloLink}>
-      <img src={zaloIcon} alt={zaloLabel} />
+      <div class="icon">
+        <slot name="zaloIcon">
+          <ZaloSvg />
+        </slot>
+      </div>
       <span>{zaloLabel}</span>
     </a>
   </li>
   <li>
-    <a alt={wappLabel} href={wappLink}>
-      <img src={wappIcon} alt={wappLabel} />
-      <span>{wappLabel}</span>
+    <a alt={whatsAppLabel} href={whatsAppLink}>
+      <div class="icon">
+        <slot name="whatsAppIcon">
+          <WhatsAppSvg />
+        </slot>
+      </div>
+      <span>{whatsAppLabel}</span>
     </a>
   </li>
   <li>
-    <a alt={wechLabel} href={wechLink}>
-      <img src={wechIcon} alt={wechLabel} />
-      <span>{wechLabel}</span>
+    <a alt={weChatLabel} href={weChatLink}>
+      <div class="icon">
+        <slot name="weChatIcon">
+          <WeChatSvg />
+        </slot>
+      </div>
+      <span>{weChatLabel}</span>
     </a>
   </li>
 </ul>
