@@ -18,7 +18,7 @@
   export let wechIcon = wechatSvg
 </script>
 
-<style>
+<style lang="scss">
   ul {
     list-style: none;
     margin: 0;
@@ -33,20 +33,20 @@
     display: grid;
     grid: 1fr/1fr;
     grid: 1fr / repeat(4, 50px);
-  }
 
-  li {
-    display: block;
-    padding: 0;
-  }
-
-  @media (min-width: 640px) {
-    ul {
+    @media (min-width: 640px) {
       width: 50px;
       grid: repeat(4, 50px) / 1fr;
     }
+
+    > li {
+      display: block;
+      padding: 0;
+    }
   }
 </style>
+
+<svelte:options tag="cta-bar" />
 
 <ul>
   <li>
