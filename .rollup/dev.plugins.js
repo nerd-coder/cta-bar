@@ -1,8 +1,14 @@
 import html from '@rollup/plugin-html'
 import livereload from 'rollup-plugin-livereload'
 import serve from 'rollup-plugin-serve'
+import clear from 'rollup-plugin-clear'
 
-export default [html({ template: htmlTemplate }), serve('dist'), livereload('dist')]
+export default [
+  html({ template: htmlTemplate }),
+  serve('dist'),
+  livereload('dist'),
+  clear({ targets: ['dist'] }),
+]
 
 async function htmlTemplate({ files, publicPath }) {
   const ensureArray = a => (Array.isArray(a) ? a : [])
