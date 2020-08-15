@@ -1,3 +1,1 @@
-import Component from './Component.svelte'
-
-export default Component
+import './Component.svelte'
