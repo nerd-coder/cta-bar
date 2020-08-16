@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "main": "./dist/main.js",
   "license": "MIT",
+  "repository": "github:nerd-coder/cta-bar",
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w"
