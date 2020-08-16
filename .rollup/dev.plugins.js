@@ -38,6 +38,9 @@ async function htmlTemplate({ files, publicPath }) {
         height: 300px;
         border: 1px solid darkblue;
       }
+      .block:nth-child(2n) {
+        background: green;
+      }
     </style>
     ${links}
     ${scripts}

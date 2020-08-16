@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { transparentize } from 'polished'
   import { scroll } from './script/useScroll'
 
   import ZaloSvg from './img/zalo.svg'
@@ -7,10 +6,6 @@
   import WhatsAppSvg from './img/whatsapp.svg'
   import WeChatSvg from './img/wechat.svg'
 
-  export let font = `'Open Sans', Arial, sans-serif`
-  export let color = 'white'
-  export let bgColor = '#1a2026'
-  export let zIndex = 1000
   export let phoneLabel = 'CALL US'
   export let phoneLink = 'tel:+84999999999'
   export let zaloLabel = 'ZALO'
@@ -23,12 +18,6 @@
   let active: number = null
   const clearActive = () => (active = null)
   const activeSetters = [0, 1, 2, 3].map(i => () => (active = i))
-
-  $: colorT7 = transparentize(0.3, color)
-  $: bgColorT7 = transparentize(0.3, bgColor)
-  $: cssVarMix = Object.entries({ font, color, bgColor, colorT7, bgColorT7, zIndex })
-    .map(([a, b]) => `--${a}:${b}`)
-    .join(';')
 </script>
 
 <style lang="scss">
@@ -36,6 +25,15 @@
   @use 'style/main';
   @use 'style/section';
   @use 'style/icon';
+
+  main {
+    --font: var(--cb-font, 'Open Sans', Arial, sans-serif);
+    --color: var(--cb-color, hsl(0, 0%, 100%));
+    --colorT7: var(--cb-color, rgba(255, 255, 255, 0.7));
+    --bgColor: var(--cb-bgColor, hsl(210, 19%, 13%));
+    --bgColorT7: var(--cb-bgColor, hsla(210, 19%, 13%, 0.7));
+    --zIndex: var(--cb-zIndex, 1000);
+  }
 
   a {
     @include mixin.anchorReset();
@@ -49,7 +47,7 @@
 <svelte:options tag="cta-bar" />
 
 <!-- MAIN -->
-<main style={cssVarMix} class:mobileHidden={$scroll.down} on:mouseleave={clearActive}>
+<main class:mobileHidden={$scroll.down} on:mouseleave={clearActive}>
   <section class="key">
     <a
       class="icon"
