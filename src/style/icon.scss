@@ -1,5 +1,4 @@
 @use 'mixin';
-@use 'var';
 
 @mixin toggleColorTransition {
   will-change: background, color;
@@ -63,7 +62,7 @@
 }
 
 .label {
-  font: normal normal normal 10px/12px 'Open Sans', Arial, sans-serif;
+  font: normal normal normal 10px/12px var(--font);
   color: var(--color);
   text-align: center;
 

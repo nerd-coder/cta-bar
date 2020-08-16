@@ -7,6 +7,7 @@
   import WhatsAppSvg from './img/whatsapp.svg'
   import WeChatSvg from './img/wechat.svg'
 
+  export let font = `'Open Sans', Arial, sans-serif`
   export let color = 'white'
   export let bgColor = '#1a2026'
   export let zIndex = 1000
@@ -25,14 +26,13 @@
 
   $: colorT7 = transparentize(0.3, color)
   $: bgColorT7 = transparentize(0.3, bgColor)
-  $: cssVarMix = Object.entries({ color, bgColor, colorT7, bgColorT7, zIndex })
+  $: cssVarMix = Object.entries({ font, color, bgColor, colorT7, bgColorT7, zIndex })
     .map(([a, b]) => `--${a}:${b}`)
     .join(';')
 </script>
 
 <style lang="scss">
   @use 'style/mixin';
-  @use 'style/var';
   @use 'style/main';
   @use 'style/section';
   @use 'style/icon';
