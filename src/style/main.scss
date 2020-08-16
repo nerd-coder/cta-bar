@@ -9,11 +9,18 @@ main {
   right: 0;
   width: 100%;
   z-index: var(--zIndex);
+  opacity: 1;
+
+  transition: 0.5s ease-in-out;
+  transition-property: bottom, opacity;
+  will-change: bottom, opacity;
 
   &.mobileHidden {
-    display: none;
+    bottom: -100px;
+    opacity: 0;
     @media screen and (min-width: 640px) {
-      display: grid;
+      bottom: unset;
+      opacity: 1;
     }
   }
 
