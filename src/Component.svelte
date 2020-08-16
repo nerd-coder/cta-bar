@@ -9,6 +9,7 @@
 
   export let color = 'white'
   export let bgColor = '#1a2026'
+  export let zIndex = 1000
   export let phoneLabel = 'CALL US'
   export let phoneLink = 'tel:+84999999999'
   export let zaloLabel = 'ZALO'
@@ -45,7 +46,7 @@
 
 <!-- MAIN -->
 <main
-  style="--color: {color}; --bgColor: {bgColor}; --bgColorT7: {bgColorT7};"
+  style="--color: {color}; --bgColor: {bgColor}; --bgColorT7: {bgColorT7}; --zIndex: {zIndex}"
   class:mobileHidden={$scroll.down}
   on:mouseleave={clearActive}>
   <section class="key">
