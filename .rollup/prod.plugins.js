@@ -1,3 +1,3 @@
 import { terser } from 'rollup-plugin-terser'
 
-export default [terser()]
+export default () => [terser()]

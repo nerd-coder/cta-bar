@@ -10,7 +10,7 @@ const IS_PROD = !process.env.ROLLUP_WATCH
 
 const preprocess = sveltePre({ postcss: { plugins: [autoprefixer({ grid: 'autoplace' })] } })
 
-export default [
+export default () => [
   // @ts-ignore
   svelte({ dev: !IS_PROD, customElement: true, preprocess }),
   svelteSVG(),
