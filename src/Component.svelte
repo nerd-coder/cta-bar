@@ -57,13 +57,12 @@
       on:mouseover={activeSetters[0]}>
       <slot name="phoneIcon">
         <PhoneSvg />
+        <!-- WORK_AROUND -->
+        <svg style="display: none">
+          <path />
+        </svg>
+        <!-- /WORK_AROUND -->
       </slot>
-
-      <!-- WORK_AROUND -->
-      <svg style="display: none">
-        <path />
-      </svg>
-      <!-- /WORK_AROUND -->
     </a>
     <a
       class="icon"
