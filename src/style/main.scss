@@ -8,6 +8,7 @@ main {
   left: 0;
   right: 0;
   width: 100%;
+  border-top: 1px solid var(--colorT7);
   z-index: var(--zIndex);
   opacity: 1;
 
@@ -29,6 +30,7 @@ main {
     left: unset;
     bottom: unset;
     width: auto;
+    border-top: none;
     display: grid;
     grid:
       'c2 c1' 1fr
