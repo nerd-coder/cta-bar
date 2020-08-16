@@ -6,14 +6,14 @@
   import WhatsAppSvg from './img/whatsapp.svg'
   import WeChatSvg from './img/wechat.svg'
 
-  export let phoneLabel = 'CALL US'
-  export let phoneLink = 'tel:+84999999999'
-  export let zaloLabel = 'ZALO'
-  export let zaloLink = 'https://zalo.me'
-  export let whatsAppLabel = 'WHATS APP'
-  export let whatsAppLink = 'https://whatsapp.com'
-  export let weChatLabel = 'WE CHAT'
-  export let weChatLink = 'https://wechat.com'
+  export let label_phone = 'CALL US'
+  export let label_wechat = 'WE CHAT'
+  export let label_whatsapp = 'WHATS APP'
+  export let label_zalo = 'ZALO'
+  export let link_phone = 'tel:+84999999999'
+  export let link_wechat = 'https://wechat.com'
+  export let link_whatsapp = 'https://whatsapp.com'
+  export let link_zalo = 'https://zalo.me'
 
   let active: number = null
   const clearActive = () => (active = null)
@@ -51,8 +51,8 @@
   <section class="key">
     <a
       class="icon"
-      alt={phoneLabel}
-      href={phoneLink}
+      alt={label_phone}
+      href={link_phone}
       class:active={active == 0}
       on:mouseover={activeSetters[0]}>
       <slot name="phoneIcon">
@@ -66,8 +66,8 @@
     </a>
     <a
       class="icon"
-      alt={zaloLabel}
-      href={zaloLink}
+      alt={label_zalo}
+      href={link_zalo}
       class:active={active == 1}
       on:mouseenter={activeSetters[1]}>
       <slot name="zaloIcon">
@@ -76,8 +76,8 @@
     </a>
     <a
       class="icon"
-      alt={whatsAppLabel}
-      href={whatsAppLink}
+      alt={label_whatsapp}
+      href={link_whatsapp}
       class:active={active == 2}
       on:mouseover={activeSetters[2]}>
       <slot name="whatsAppIcon">
@@ -86,8 +86,8 @@
     </a>
     <a
       class="icon"
-      alt={weChatLabel}
-      href={weChatLink}
+      alt={label_wechat}
+      href={link_wechat}
       class:active={active == 3}
       on:mouseover={activeSetters[3]}>
       <slot name="weChatIcon">
@@ -99,35 +99,35 @@
   <section class="side">
     <a
       class="label"
-      alt={phoneLabel}
-      href={phoneLink}
+      alt={label_phone}
+      href={link_phone}
       class:active={active == 0}
       on:mouseover={activeSetters[0]}>
-      {phoneLabel}
+      {label_phone}
     </a>
     <a
       class="label"
-      alt={zaloLabel}
-      href={zaloLink}
+      alt={label_zalo}
+      href={link_zalo}
       class:active={active == 1}
       on:mouseover={activeSetters[1]}>
-      {zaloLabel}
+      {label_zalo}
     </a>
     <a
       class="label"
-      alt={whatsAppLabel}
-      href={whatsAppLink}
+      alt={label_whatsapp}
+      href={link_whatsapp}
       class:active={active == 2}
       on:mouseover={activeSetters[2]}>
-      {whatsAppLabel}
+      {label_whatsapp}
     </a>
     <a
       class="label"
-      alt={weChatLabel}
-      href={weChatLink}
+      alt={label_wechat}
+      href={link_wechat}
       class:active={active == 3}
       on:mouseover={activeSetters[3]}>
-      {weChatLabel}
+      {label_wechat}
     </a>
   </section>
 
