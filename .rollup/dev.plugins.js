@@ -29,6 +29,7 @@ async function htmlTemplate({ files, publicPath }) {
   <head>
     <title>CTA Bar</title>
     <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
       html,
       body {
@@ -38,12 +39,22 @@ async function htmlTemplate({ files, publicPath }) {
         -webkit-font-smoothing: antialiased;
         padding: 0;
         margin: 0;
-      } 
+      }
+      .block {
+        height: 300px;
+        border: 1px solid darkblue;
+      }
     </style>
     ${links}
     ${scripts}
   </head>
   <body>
+    <div class=block></div>
+    <div class=block></div>
+    <div class=block></div>
+    <div class=block></div>
+    <div class=block></div>
+    
     <cta-bar></cta-bar>
   </body>
 </html>`
