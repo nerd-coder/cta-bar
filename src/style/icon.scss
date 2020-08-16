@@ -1,9 +1,9 @@
 @use 'mixin';
 
 @mixin toggleColorTransition {
-  will-change: background, color;
+  will-change: background-color, color;
   transition: 0.3s ease;
-  transition-property: background, color;
+  transition-property: background-color, color;
 
   svg path {
     will-change: fill;
