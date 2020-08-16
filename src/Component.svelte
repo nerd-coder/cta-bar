@@ -29,9 +29,9 @@
   main {
     --font: var(--cb-font, 'Open Sans', Arial, sans-serif);
     --color: var(--cb-color, hsl(0, 0%, 100%));
-    --colorT7: var(--cb-color, rgba(255, 255, 255, 0.7));
+    --colorT7: var(--cb-colorT7, rgba(255, 255, 255, 0.7));
     --bgColor: var(--cb-bgColor, hsl(210, 19%, 13%));
-    --bgColorT7: var(--cb-bgColor, hsla(210, 19%, 13%, 0.7));
+    --bgColorT7: var(--cb-bgColorT7, hsla(210, 19%, 13%, 0.7));
     --zIndex: var(--cb-zIndex, 1000);
   }
 
