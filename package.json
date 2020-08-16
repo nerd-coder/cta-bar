@@ -1,6 +1,6 @@
 {
   "name": "@nerd-coder/cta-bar",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "./dist/main.js",
   "license": "MIT",
   "repository": "github:nerd-coder/cta-bar",
