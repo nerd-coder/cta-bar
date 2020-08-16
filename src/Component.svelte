@@ -23,7 +23,11 @@
   const clearActive = () => (active = null)
   const activeSetters = [0, 1, 2, 3].map(i => () => (active = i))
 
+  $: colorT7 = transparentize(0.3, color)
   $: bgColorT7 = transparentize(0.3, bgColor)
+  $: cssVarMix = Object.entries({ color, bgColor, colorT7, bgColorT7, zIndex })
+    .map(([a, b]) => `--${a}:${b}`)
+    .join(';')
 </script>
 
 <style lang="scss">
@@ -45,10 +49,7 @@
 <svelte:options tag="cta-bar" />
 
 <!-- MAIN -->
-<main
-  style="--color: {color}; --bgColor: {bgColor}; --bgColorT7: {bgColorT7}; --zIndex: {zIndex}"
-  class:mobileHidden={$scroll.down}
-  on:mouseleave={clearActive}>
+<main style={cssVarMix} class:mobileHidden={$scroll.down} on:mouseleave={clearActive}>
   <section class="key">
     <a
       class="icon"

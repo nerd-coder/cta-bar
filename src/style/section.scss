@@ -19,7 +19,7 @@ section {
     border-radius: 5px;
     grid: repeat(4, 50px) / 1fr;
     gap: 0;
-    border: 1px solid var(--bgColor);
+    border: 1px solid var(--colorT7);
 
     &.key,
     &.side {
