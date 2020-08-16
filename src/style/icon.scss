@@ -1,0 +1,76 @@
+@use 'mixin';
+@use 'var';
+
+@mixin toggleColorTransition {
+  will-change: background, color;
+  transition: 0.3s ease;
+  transition-property: background, color;
+
+  svg path {
+    will-change: fill;
+    transition: fill 0.3s ease;
+  }
+}
+@mixin toggleColor($active) {
+  @if $active {
+    color: var(--bgColor);
+    background-color: var(--color);
+    svg path {
+      fill: var(--bgColor);
+    }
+  } @else {
+    color: inherit;
+    background-color: transparent;
+    svg path {
+      fill: var(--color);
+    }
+  }
+}
+
+.icon,
+.label {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 640px) {
+    @include toggleColor(false);
+    @include toggleColorTransition;
+    &:hover,
+    &.active {
+      @include toggleColor(true);
+    }
+  }
+}
+
+.icon {
+  svg {
+    width: 32px;
+    height: 32px;
+
+    path {
+      fill: var(--color);
+    }
+  }
+
+  @media screen and (min-width: 640px) {
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.label {
+  font: normal normal normal 10px/12px 'Open Sans', Arial, sans-serif;
+  color: var(--color);
+  text-align: center;
+
+  @media screen and (min-width: 640px) {
+    font-size: 12px;
+    padding: 0 16px;
+    text-align: left;
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,39 @@
+@use 'mixin';
+@use 'var';
+
+main {
+  position: fixed;
+  overflow: hidden;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+  &.mobileHidden {
+    display: none;
+    @media screen and (min-width: 640px) {
+      display: grid;
+    }
+  }
+
+  @media screen and (min-width: 640px) {
+    top: 15vh;
+    left: unset;
+    bottom: unset;
+    width: auto;
+    display: grid;
+    grid:
+      'c2 c1' 1fr
+      / 1fr 50px;
+    @include mixin.autoPlaceGridCell(2);
+
+    @include mixin.onlyHoverChild;
+    @include mixin.toggleSide(false);
+    @include mixin.toggleSideTransition;
+
+    &:hover,
+    &.active {
+      @include mixin.toggleSide(true);
+    }
+  }
+}

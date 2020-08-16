@@ -1,88 +1,125 @@
 <script lang="ts">
+  import { transparentize } from 'polished'
+  import { scroll } from './script/useScroll'
+
   import ZaloSvg from './img/zalo.svg'
   import PhoneSvg from './img/phone.svg'
   import WhatsAppSvg from './img/whatsapp.svg'
   import WeChatSvg from './img/wechat.svg'
 
-  export let phoneLabel = 'Call'
+  export let color = 'white'
+  export let bgColor = '#1a2026'
+  export let phoneLabel = 'CALL US'
   export let phoneLink = 'tel:+84999999999'
-  export let zaloLabel = 'Zalo'
+  export let zaloLabel = 'ZALO'
   export let zaloLink = 'https://zalo.me'
-  export let whatsAppLabel = 'WhatsApp'
+  export let whatsAppLabel = 'WHATS APP'
   export let whatsAppLink = 'https://whatsapp.com'
-  export let weChatLabel = 'WeChat'
+  export let weChatLabel = 'WE CHAT'
   export let weChatLink = 'https://wechat.com'
+
+  let active: number = null
+
+  $: bgColorT3 = transparentize(0.3, bgColor)
+
+  const clearActive = () => (active = null)
+  const activeSetters = [0, 1, 2, 3].map(i => () => (active = i))
 </script>
 
-<style lang="scss">
-  ul {
-    list-style: none;
-    margin: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding: 0;
-    padding-inline-start: 0;
-    padding-inline-end: 0;
+<style lang="scss" src="./index.scss">
 
-    display: grid;
-    grid: 1fr/1fr;
-    grid: 1fr / repeat(4, 50px);
-
-    @media (min-width: 640px) {
-      width: 50px;
-      grid: repeat(4, 50px) / 1fr;
-    }
-
-    > li {
-      display: block;
-      padding: 0;
-    }
-  }
 </style>
 
 <svelte:options tag="cta-bar" />
 
-<ul>
-  <li>
-    <a alt={phoneLabel} href={phoneLink}>
-      <div class="icon">
-        <slot name="phoneIcon">
-          <PhoneSvg />
-        </slot>
-      </div>
-      <span>{phoneLabel}</span>
+<!-- MAIN -->
+<main
+  style="--color: {color}; --bgColor: {bgColor}; --bgColorT3: {bgColorT3};"
+  class:mobileHidden={$scroll.down}
+  on:mouseleave={clearActive}>
+  <section class="key">
+    <a
+      class="icon"
+      alt={phoneLabel}
+      href={phoneLink}
+      class:active={active == 0}
+      on:mouseover={activeSetters[0]}>
+      <slot name="phoneIcon">
+        <PhoneSvg />
+      </slot>
+
+      <!-- WORK_AROUND -->
+      <svg style="display: none">
+        <path />
+      </svg>
+      <!-- /WORK_AROUND -->
     </a>
-  </li>
-  <li>
-    <a alt={zaloLabel} href={zaloLink}>
-      <div class="icon">
-        <slot name="zaloIcon">
-          <ZaloSvg />
-        </slot>
-      </div>
-      <span>{zaloLabel}</span>
+    <a
+      class="icon"
+      alt={zaloLabel}
+      href={zaloLink}
+      class:active={active == 1}
+      on:mouseenter={activeSetters[1]}>
+      <slot name="zaloIcon">
+        <ZaloSvg />
+      </slot>
     </a>
-  </li>
-  <li>
-    <a alt={whatsAppLabel} href={whatsAppLink}>
-      <div class="icon">
-        <slot name="whatsAppIcon">
-          <WhatsAppSvg />
-        </slot>
-      </div>
-      <span>{whatsAppLabel}</span>
+    <a
+      class="icon"
+      alt={whatsAppLabel}
+      href={whatsAppLink}
+      class:active={active == 2}
+      on:mouseover={activeSetters[2]}>
+      <slot name="whatsAppIcon">
+        <WhatsAppSvg />
+      </slot>
     </a>
-  </li>
-  <li>
-    <a alt={weChatLabel} href={weChatLink}>
-      <div class="icon">
-        <slot name="weChatIcon">
-          <WeChatSvg />
-        </slot>
-      </div>
-      <span>{weChatLabel}</span>
+    <a
+      class="icon"
+      alt={weChatLabel}
+      href={weChatLink}
+      class:active={active == 3}
+      on:mouseover={activeSetters[3]}>
+      <slot name="weChatIcon">
+        <WeChatSvg />
+      </slot>
     </a>
-  </li>
-</ul>
+  </section>
+
+  <section class="side">
+    <a
+      class="label"
+      alt={phoneLabel}
+      href={phoneLink}
+      class:active={active == 0}
+      on:mouseover={activeSetters[0]}>
+      {phoneLabel}
+    </a>
+    <a
+      class="label"
+      alt={zaloLabel}
+      href={zaloLink}
+      class:active={active == 1}
+      on:mouseover={activeSetters[1]}>
+      {zaloLabel}
+    </a>
+    <a
+      class="label"
+      alt={whatsAppLabel}
+      href={whatsAppLink}
+      class:active={active == 2}
+      on:mouseover={activeSetters[2]}>
+      {whatsAppLabel}
+    </a>
+    <a
+      class="label"
+      alt={weChatLabel}
+      href={weChatLink}
+      class:active={active == 3}
+      on:mouseover={activeSetters[3]}>
+      {weChatLabel}
+    </a>
+  </section>
+
+</main>
+<!-- /MAIN -->

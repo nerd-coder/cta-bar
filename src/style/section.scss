@@ -1,0 +1,29 @@
+@use 'mixin';
+@use 'var';
+
+section {
+  color: var(--color);
+  background-color: var(--bgColorT3);
+  padding: 8px 16px;
+  overflow: hidden;
+
+  display: grid;
+  grid: 1fr / repeat(4, 1fr);
+  gap: 8px;
+
+  &.key {
+    padding-bottom: 0;
+  }
+
+  @media screen and (min-width: 640px) {
+    border-radius: 5px;
+    grid: repeat(4, 50px) / 1fr;
+    gap: 0;
+    border: 1px solid var(--bgColor);
+
+    &.key,
+    &.side {
+      padding: 0;
+    }
+  }
+}

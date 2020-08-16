@@ -1,0 +1,59 @@
+@mixin anchorReset {
+  &,
+  &:visited,
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+@mixin autoPlaceGridCell($num: 2) {
+  @for $i from 1 to $num + 1 {
+    > :nth-child(#{$i}) {
+      grid-area: c#{$i};
+    }
+  }
+}
+
+@mixin onlyHoverChild {
+  pointer-events: none;
+
+  > * {
+    pointer-events: all;
+  }
+}
+
+@mixin toggleSideTransition {
+  .key {
+    will-change: border;
+    transition: 0.5s ease;
+    transition-property: border;
+  }
+  .side {
+    position: relative;
+    will-change: opacity, left;
+    transition: 0.5s ease;
+    transition-property: opacity, left;
+  }
+}
+@mixin toggleSide($show) {
+  @if $show {
+    .side {
+      left: 0;
+      opacity: 1;
+    }
+    .key {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  } @else {
+    .side {
+      left: 100%;
+      opacity: 0;
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
