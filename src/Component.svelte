@@ -27,12 +27,12 @@
   @use 'style/icon';
 
   main {
-    --font: var(--cb-font, 'Open Sans', Arial, sans-serif);
-    --color: var(--cb-color, hsl(0, 0%, 100%));
-    --colorT7: var(--cb-colorT7, rgba(255, 255, 255, 0.7));
-    --bgColor: var(--cb-bgColor, hsl(210, 19%, 13%));
-    --bgColorT7: var(--cb-bgColorT7, hsla(210, 19%, 13%, 0.7));
-    --zIndex: var(--cb-zIndex, 1000);
+    --font: var(--ctaBar-font, 'Open Sans', Arial, sans-serif);
+    --color: var(--ctaBar-color, hsl(0, 0%, 100%));
+    --colorT7: var(--ctaBar-colorT7, rgba(255, 255, 255, 0.7));
+    --bgColor: var(--ctaBar-bgColor, hsl(210, 19%, 13%));
+    --bgColorT7: var(--ctaBar-bgColorT7, hsla(210, 19%, 13%, 0.7));
+    --zIndex: var(--ctaBar-zIndex, 1000);
   }
 
   a {
