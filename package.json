@@ -4,9 +4,6 @@
   "main": "./dist/main.js",
   "license": "MIT",
   "repository": "github:nerd-coder/cta-bar",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/nerd-coder"
-  },
   "files": [
     "dist"
   ],
