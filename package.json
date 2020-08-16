@@ -11,7 +11,7 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepublishOnly": "npm run build",
-    "release": "release-it minor --ci"
+    "release": "release-it patch --ci"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
