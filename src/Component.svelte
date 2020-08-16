@@ -19,22 +19,33 @@
   export let weChatLink = 'https://wechat.com'
 
   let active: number = null
-
-  $: bgColorT3 = transparentize(0.3, bgColor)
-
   const clearActive = () => (active = null)
   const activeSetters = [0, 1, 2, 3].map(i => () => (active = i))
+
+  $: bgColorT7 = transparentize(0.3, bgColor)
 </script>
 
-<style lang="scss" src="./index.scss">
+<style lang="scss">
+  @use 'style/mixin';
+  @use 'style/var';
+  @use 'style/main';
+  @use 'style/section';
+  @use 'style/icon';
 
+  a {
+    @include mixin.anchorReset();
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 </style>
 
 <svelte:options tag="cta-bar" />
 
 <!-- MAIN -->
 <main
-  style="--color: {color}; --bgColor: {bgColor}; --bgColorT3: {bgColorT3};"
+  style="--color: {color}; --bgColor: {bgColor}; --bgColorT7: {bgColorT7};"
   class:mobileHidden={$scroll.down}
   on:mouseleave={clearActive}>
   <section class="key">
