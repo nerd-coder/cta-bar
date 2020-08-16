@@ -28,10 +28,10 @@
 
   main {
     --font: var(--ctaBar-font, 'Open Sans', Arial, sans-serif);
-    --color: var(--ctaBar-color, hsl(0, 0%, 100%));
-    --colorT7: var(--ctaBar-colorT7, rgba(255, 255, 255, 0.7));
-    --bgColor: var(--ctaBar-bgColor, hsl(210, 19%, 13%));
-    --bgColorT7: var(--ctaBar-bgColorT7, hsla(210, 19%, 13%, 0.7));
+    --color: var(--ctaBar-color, #ffffff);
+    --colorT7: var(--ctaBar-colorT7, #ffffffb3);
+    --bgColor: var(--ctaBar-bgColor, #1b2127);
+    --bgColorT7: var(--ctaBar-bgColorT7, #1b2127b3);
     --zIndex: var(--ctaBar-zIndex, 1000);
   }
 

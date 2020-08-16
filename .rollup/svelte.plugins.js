@@ -1,4 +1,5 @@
 import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
 import commonjs from '@rollup/plugin-commonjs'
 import sveltePre from 'svelte-preprocess'
 import nodeResolve from '@rollup/plugin-node-resolve'
@@ -8,7 +9,11 @@ import typescript from '@rollup/plugin-typescript'
 
 const IS_PROD = !process.env.ROLLUP_WATCH
 
-const preprocess = sveltePre({ postcss: { plugins: [autoprefixer({ grid: 'autoplace' })] } })
+const preprocess = sveltePre({
+  postcss: {
+    plugins: [cssnano(), autoprefixer({ grid: 'autoplace' })],
+  },
+})
 
 export default () => [
   // @ts-ignore
