@@ -26,7 +26,7 @@
   @use 'style/section';
   @use 'style/icon';
 
-  main {
+  :host {
     --font: var(--ctaBar-font, 'Open Sans', Arial, sans-serif);
     --color: var(--ctaBar-color, #ffffff);
     --colorT7: var(--ctaBar-colorT7, #ffffffb3);
