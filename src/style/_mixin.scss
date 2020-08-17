@@ -57,3 +57,29 @@
     }
   }
 }
+
+@mixin toggleColorTransition {
+  will-change: background-color, color;
+  transition: 0.3s ease;
+  transition-property: background-color, color;
+
+  svg path {
+    will-change: fill;
+    transition: fill 0.3s ease;
+  }
+}
+@mixin toggleColor($active) {
+  @if $active {
+    color: var(--bgColor);
+    background-color: var(--color);
+    svg path {
+      fill: var(--bgColor);
+    }
+  } @else {
+    color: inherit;
+    background-color: transparent;
+    svg path {
+      fill: var(--color);
+    }
+  }
+}
