@@ -7,30 +7,35 @@
   align-items: center;
   justify-content: center;
 
-  @media screen and (min-width: 640px) {
-    @include mixin.toggleColor(false);
-    @include mixin.toggleColorTransition;
-    &:hover,
-    &.active {
-      @include mixin.toggleColor(true);
-    }
-  }
-}
-
-.icon {
-  svg {
+  svg,
+  ::slotted(svg) {
     width: 32px;
     height: 32px;
-
-    path {
-      fill: var(--color);
-    }
   }
 
   @media screen and (min-width: 640px) {
-    svg {
+    @include mixin.transitionFor(0.3s ease, background-color, color);
+
+    svg,
+    ::slotted(svg) {
       width: 24px;
       height: 24px;
+    }
+
+    svg path {
+      fill: var(--color);
+      @include mixin.transitionFor(fill 0.3s ease);
+    }
+
+    &:hover,
+    &.active {
+      color: var(--bgColor);
+      background-color: var(--color);
+
+      svg,
+      ::slotted(svg) {
+        --color: var(--bgColor);
+      }
     }
   }
 }
