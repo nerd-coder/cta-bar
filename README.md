@@ -24,6 +24,8 @@ A web component writing in Svelte
 
 ## Settings
 
+Html attribute you can use to custom the component
+
 | Property         | Default Value            | Description             |
 | ---------------- | ------------------------ | ----------------------- |
 | `phone`          | `'true'`                 | Show Phone icon         |
@@ -39,12 +41,32 @@ A web component writing in Svelte
 | `link_whatsapp`  | `'https://whatsapp.com'` | WhatsApp link           |
 | `link_zalo`      | `'https://zalo.me'`      | Zalo link               |
 
+## Stylable
+
+CSS Variables you can use to custom the component
+
+| Variable Name | Default Value                    |
+|---------------|----------------------------------|
+| `--font`      | `'Open Sans', Arial, sans-serif` |
+| `--color`     | `#ffffff`                        |
+| `--colorT7`   | `#ffffffb3`                      |
+| `--bgColor`   | `#1b2127`                        |
+| `--bgColorT7` | `#1b2127b3`                      |
+| `--zIndex`    | `1000`                           |
+
 ## Change Icon
 
-You can use component slot to change default icon.
+You can use component slot to change default icons, but must add the style rule (se example below) to allow the icon react to component state
 
 ```html
 ...
+<style>
+  /* 
+  Due to Web Components limitation, must include this style if you want to use custom svg icon
+  */
+  cta-bar svg path { fill: var(--color); }
+</style>
+
 <cta-bar>
   <svg slot='phone' width="30" height="30" viewBox="0 0 172 172">
     <g fill="#000000">
