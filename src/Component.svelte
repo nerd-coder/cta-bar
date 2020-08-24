@@ -63,7 +63,9 @@
       order: +order_zalo,
       Icon: ZaloSvg,
     },
-  ].sort(sortBy('order'))
+  ]
+    .filter(z => z.visible)
+    .sort(sortBy('order'))
 
   let active: number = null
   const clearActive = () => (active = null)
