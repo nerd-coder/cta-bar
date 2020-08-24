@@ -1,5 +1,6 @@
 <script lang="ts">
   import { scroll } from './script/useScroll'
+  import sortBy from './script/sortBy'
 
   import ZaloSvg from './img/zalo.svg'
   import PhoneSvg from './img/phone.svg'
@@ -8,23 +9,61 @@
 
   const isTruthly = (s: string) => s == 'true'
 
+  // Visible
   export let phone = 'true'
   export let wechat = 'true'
   export let whatsapp = 'true'
   export let zalo = 'true'
+  // Order
+  export let order_phone = '0'
+  export let order_wechat = '0'
+  export let order_whatsapp = '0'
+  export let order_zalo = '0'
+  // Label
   export let label_phone = 'CALL US'
   export let label_wechat = 'WE CHAT'
   export let label_whatsapp = 'WHATS APP'
   export let label_zalo = 'ZALO'
+  // Link
   export let link_phone = 'tel:+84999999999'
   export let link_wechat = 'https://wechat.com'
   export let link_whatsapp = 'https://whatsapp.com'
   export let link_zalo = 'https://zalo.me'
 
-  $: showPhone = isTruthly(phone)
-  $: showWechat = isTruthly(wechat)
-  $: showWhatsapp = isTruthly(whatsapp)
-  $: showZalo = isTruthly(zalo)
+  $: data = [
+    {
+      visible: isTruthly(phone),
+      label: label_phone,
+      link: link_phone,
+      slot: 'phone',
+      order: +order_phone,
+      Icon: PhoneSvg,
+    },
+    {
+      visible: isTruthly(wechat),
+      label: label_wechat,
+      link: link_wechat,
+      slot: 'wechat',
+      order: +order_wechat,
+      Icon: WeChatSvg,
+    },
+    {
+      visible: isTruthly(whatsapp),
+      label: label_whatsapp,
+      link: link_whatsapp,
+      slot: 'whatsapp',
+      order: +order_whatsapp,
+      Icon: WhatsAppSvg,
+    },
+    {
+      visible: isTruthly(zalo),
+      label: label_zalo,
+      link: link_zalo,
+      slot: 'zalo',
+      order: +order_zalo,
+      Icon: ZaloSvg,
+    },
+  ].sort(sortBy('order'))
 
   let active: number = null
   const clearActive = () => (active = null)
@@ -60,103 +99,39 @@
 <!-- MAIN -->
 <main class:mobileHidden={$scroll.down} on:mouseleave={clearActive}>
   <section class="key">
-    {#if showPhone}
+    {#each data as { label, link, slot, Icon }, i (slot)}
       <a
         class="icon"
-        alt={label_phone}
-        href={link_phone}
-        class:active={active == 0}
-        on:mouseover={activeSetters[0]}>
-        <slot name="phoneIcon">
-          <PhoneSvg />
-          <!-- WORK_AROUND -->
-          <svg style="display: none">
-            <path />
-          </svg>
-          <!-- /WORK_AROUND -->
+        alt={label}
+        href={link}
+        class:active={active == i}
+        on:mouseover={activeSetters[i]}>
+        <slot name={slot}>
+          <Icon />
         </slot>
       </a>
-    {/if}
-    {#if showWechat}
-      <a
-        class="icon"
-        alt={label_zalo}
-        href={link_zalo}
-        class:active={active == 1}
-        on:mouseenter={activeSetters[1]}>
-        <slot name="zaloIcon">
-          <ZaloSvg />
-        </slot>
-      </a>
-    {/if}
-    {#if showWhatsapp}
-      <a
-        class="icon"
-        alt={label_whatsapp}
-        href={link_whatsapp}
-        class:active={active == 2}
-        on:mouseover={activeSetters[2]}>
-        <slot name="whatsAppIcon">
-          <WhatsAppSvg />
-        </slot>
-      </a>
-    {/if}
-    {#if showZalo}
-      <a
-        class="icon"
-        alt={label_wechat}
-        href={link_wechat}
-        class:active={active == 3}
-        on:mouseover={activeSetters[3]}>
-        <slot name="weChatIcon">
-          <WeChatSvg />
-        </slot>
-      </a>
-    {/if}
+    {/each}
   </section>
 
   <section class="side">
-    {#if showPhone}
+    {#each data as { label, link, slot, Icon }, i (slot)}
       <a
         class="label"
-        alt={label_phone}
-        href={link_phone}
-        class:active={active == 0}
-        on:mouseover={activeSetters[0]}>
-        {label_phone}
+        alt={label}
+        href={link}
+        class:active={active == i}
+        on:mouseover={activeSetters[i]}>
+        {label}
       </a>
-    {/if}
-    {#if showWechat}
-      <a
-        class="label"
-        alt={label_zalo}
-        href={link_zalo}
-        class:active={active == 1}
-        on:mouseover={activeSetters[1]}>
-        {label_zalo}
-      </a>
-    {/if}
-    {#if showWhatsapp}
-      <a
-        class="label"
-        alt={label_whatsapp}
-        href={link_whatsapp}
-        class:active={active == 2}
-        on:mouseover={activeSetters[2]}>
-        {label_whatsapp}
-      </a>
-    {/if}
-    {#if showZalo}
-      <a
-        class="label"
-        alt={label_wechat}
-        href={link_wechat}
-        class:active={active == 3}
-        on:mouseover={activeSetters[3]}>
-        {label_wechat}
-      </a>
-    {/if}
+    {/each}
   </section>
 
+  <!-- WORK_AROUND -->
+  <i class="icon" style="display: none">
+    <svg>
+      <path />
+    </svg>
+  </i>
+  <!-- /WORK_AROUND -->
 </main>
 <!-- /MAIN -->
