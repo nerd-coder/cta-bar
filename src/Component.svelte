@@ -6,6 +6,12 @@
   import WhatsAppSvg from './img/whatsapp.svg'
   import WeChatSvg from './img/wechat.svg'
 
+  const isTruthly = (s: string) => s == 'true'
+
+  export let phone = 'true'
+  export let wechat = 'true'
+  export let whatsapp = 'true'
+  export let zalo = 'true'
   export let label_phone = 'CALL US'
   export let label_wechat = 'WE CHAT'
   export let label_whatsapp = 'WHATS APP'
@@ -14,6 +20,11 @@
   export let link_wechat = 'https://wechat.com'
   export let link_whatsapp = 'https://whatsapp.com'
   export let link_zalo = 'https://zalo.me'
+
+  $: showPhone = isTruthly(phone)
+  $: showWechat = isTruthly(wechat)
+  $: showWhatsapp = isTruthly(whatsapp)
+  $: showZalo = isTruthly(zalo)
 
   let active: number = null
   const clearActive = () => (active = null)
@@ -49,86 +60,102 @@
 <!-- MAIN -->
 <main class:mobileHidden={$scroll.down} on:mouseleave={clearActive}>
   <section class="key">
-    <a
-      class="icon"
-      alt={label_phone}
-      href={link_phone}
-      class:active={active == 0}
-      on:mouseover={activeSetters[0]}>
-      <slot name="phoneIcon">
-        <PhoneSvg />
-        <!-- WORK_AROUND -->
-        <svg style="display: none">
-          <path />
-        </svg>
-        <!-- /WORK_AROUND -->
-      </slot>
-    </a>
-    <a
-      class="icon"
-      alt={label_zalo}
-      href={link_zalo}
-      class:active={active == 1}
-      on:mouseenter={activeSetters[1]}>
-      <slot name="zaloIcon">
-        <ZaloSvg />
-      </slot>
-    </a>
-    <a
-      class="icon"
-      alt={label_whatsapp}
-      href={link_whatsapp}
-      class:active={active == 2}
-      on:mouseover={activeSetters[2]}>
-      <slot name="whatsAppIcon">
-        <WhatsAppSvg />
-      </slot>
-    </a>
-    <a
-      class="icon"
-      alt={label_wechat}
-      href={link_wechat}
-      class:active={active == 3}
-      on:mouseover={activeSetters[3]}>
-      <slot name="weChatIcon">
-        <WeChatSvg />
-      </slot>
-    </a>
+    {#if showPhone}
+      <a
+        class="icon"
+        alt={label_phone}
+        href={link_phone}
+        class:active={active == 0}
+        on:mouseover={activeSetters[0]}>
+        <slot name="phoneIcon">
+          <PhoneSvg />
+          <!-- WORK_AROUND -->
+          <svg style="display: none">
+            <path />
+          </svg>
+          <!-- /WORK_AROUND -->
+        </slot>
+      </a>
+    {/if}
+    {#if showWechat}
+      <a
+        class="icon"
+        alt={label_zalo}
+        href={link_zalo}
+        class:active={active == 1}
+        on:mouseenter={activeSetters[1]}>
+        <slot name="zaloIcon">
+          <ZaloSvg />
+        </slot>
+      </a>
+    {/if}
+    {#if showWhatsapp}
+      <a
+        class="icon"
+        alt={label_whatsapp}
+        href={link_whatsapp}
+        class:active={active == 2}
+        on:mouseover={activeSetters[2]}>
+        <slot name="whatsAppIcon">
+          <WhatsAppSvg />
+        </slot>
+      </a>
+    {/if}
+    {#if showZalo}
+      <a
+        class="icon"
+        alt={label_wechat}
+        href={link_wechat}
+        class:active={active == 3}
+        on:mouseover={activeSetters[3]}>
+        <slot name="weChatIcon">
+          <WeChatSvg />
+        </slot>
+      </a>
+    {/if}
   </section>
 
   <section class="side">
-    <a
-      class="label"
-      alt={label_phone}
-      href={link_phone}
-      class:active={active == 0}
-      on:mouseover={activeSetters[0]}>
-      {label_phone}
-    </a>
-    <a
-      class="label"
-      alt={label_zalo}
-      href={link_zalo}
-      class:active={active == 1}
-      on:mouseover={activeSetters[1]}>
-      {label_zalo}
-    </a>
-    <a
-      class="label"
-      alt={label_whatsapp}
-      href={link_whatsapp}
-      class:active={active == 2}
-      on:mouseover={activeSetters[2]}>
-      {label_whatsapp}
-    </a>
-    <a
-      class="label"
-      alt={label_wechat}
-      href={link_wechat}
-      class:active={active == 3}
-      on:mouseover={activeSetters[3]}>
-      {label_wechat}
-    </a>
+    {#if showPhone}
+      <a
+        class="label"
+        alt={label_phone}
+        href={link_phone}
+        class:active={active == 0}
+        on:mouseover={activeSetters[0]}>
+        {label_phone}
+      </a>
+    {/if}
+    {#if showWechat}
+      <a
+        class="label"
+        alt={label_zalo}
+        href={link_zalo}
+        class:active={active == 1}
+        on:mouseover={activeSetters[1]}>
+        {label_zalo}
+      </a>
+    {/if}
+    {#if showWhatsapp}
+      <a
+        class="label"
+        alt={label_whatsapp}
+        href={link_whatsapp}
+        class:active={active == 2}
+        on:mouseover={activeSetters[2]}>
+        {label_whatsapp}
+      </a>
+    {/if}
+    {#if showZalo}
+      <a
+        class="label"
+        alt={label_wechat}
+        href={link_wechat}
+        class:active={active == 3}
+        on:mouseover={activeSetters[3]}>
+        {label_wechat}
+      </a>
+    {/if}
   </section>
 
 </main>
