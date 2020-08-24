@@ -40,6 +40,10 @@ Html attribute you can use to custom the component
 | `link_wechat`    | `'https://wechat.com'`   | WeChat link             |
 | `link_whatsapp`  | `'https://whatsapp.com'` | WhatsApp link           |
 | `link_zalo`      | `'https://zalo.me'`      | Zalo link               |
+| `order_phone`    | `'0'`                    | Phone order             |
+| `order_wechat`   | `'0'`                    | WeChat order            |
+| `order_whatsapp` | `'0'`                    | WhatsApp order          |
+| `order_zalo`     | `'0'`                    | Zalo order              |
 
 ## Stylable
 
