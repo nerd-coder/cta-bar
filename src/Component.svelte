@@ -16,9 +16,9 @@
   export let zalo = 'true'
   // Order
   export let order_phone = '0'
-  export let order_wechat = '0'
-  export let order_whatsapp = '0'
-  export let order_zalo = '0'
+  export let order_wechat = '1'
+  export let order_whatsapp = '2'
+  export let order_zalo = '3'
   // Label
   export let label_phone = 'CALL US'
   export let label_wechat = 'WE CHAT'
@@ -131,10 +131,12 @@
   </section>
 
   <!-- WORK_AROUND -->
-  <i class="icon" style="display: none">
-    <svg>
-      <path />
-    </svg>
+  <i class="icon label active" style="display: none">
+    <slot>
+      <svg>
+        <path />
+      </svg>
+    </slot>
   </i>
   <!-- /WORK_AROUND -->
 </main>
