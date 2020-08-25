@@ -79,12 +79,14 @@
   @use 'style/icon';
 
   :host {
-    --font: var(--ctaBar-font, 'Open Sans', Arial, sans-serif);
-    --color: var(--ctaBar-color, #ffffff);
-    --colorT7: var(--ctaBar-colorT7, #ffffffb3);
-    --bgColor: var(--ctaBar-bgColor, #1b2127);
-    --bgColorT7: var(--ctaBar-bgColorT7, #1b2127b3);
-    --zIndex: var(--ctaBar-zIndex, 1000);
+    --font: 'Open Sans', Arial, sans-serif;
+    --color: #ffffff;
+    --colorT7: #ffffffb3;
+    --bgColor: #1b2127;
+    --bgColorT7: #1b2127b3;
+    --zIndex: 1000;
+    --spacingBottom: 0px;
+    --spacingTop: 15vh;
   }
 
   a {

@@ -3,7 +3,7 @@
 main {
   position: fixed;
   overflow: hidden;
-  bottom: 0;
+  bottom: var(--spacingBottom);
   left: 0;
   right: 0;
   width: 100%;
@@ -16,7 +16,7 @@ main {
   will-change: bottom, opacity;
 
   &.mobileHidden {
-    bottom: -100px;
+    bottom: calc(var(--spacingBottom) - 100px);
     opacity: 0;
     @media screen and (min-width: 640px) {
       bottom: unset;
@@ -25,7 +25,7 @@ main {
   }
 
   @media screen and (min-width: 640px) {
-    top: 15vh;
+    top: var(--spacingTop);
     left: unset;
     bottom: unset;
     width: auto;
