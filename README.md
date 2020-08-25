@@ -49,14 +49,16 @@ Html attribute you can use to custom the component
 
 CSS Variables you can use to custom the component
 
-| Variable Name | Default Value                    |
-| ------------- | -------------------------------- |
-| `--font`      | `'Open Sans', Arial, sans-serif` |
-| `--color`     | `#ffffff`                        |
-| `--colorT7`   | `#ffffffb3`                      |
-| `--bgColor`   | `#1b2127`                        |
-| `--bgColorT7` | `#1b2127b3`                      |
-| `--zIndex`    | `1000`                           |
+| Variable Name     | Default Value                    |
+| ----------------- | -------------------------------- |
+| `--font`          | `'Open Sans', Arial, sans-serif` |
+| `--color`         | `#ffffff`                        |
+| `--colorT7`       | `#ffffffb3`                      |
+| `--bgColor`       | `#1b2127`                        |
+| `--bgColorT7`     | `#1b2127b3`                      |
+| `--zIndex`        | `1000`                           |
+| `--spacingBottom` | `0px`                            |
+| `--spacingTop`    | `15vh`                           |
 
 ## Change Icon
 
