@@ -87,6 +87,8 @@
     --zIndex: 1000;
     --spacingBottom: 0px;
     --spacingTop: 15vh;
+    --spacingLeft: unset;
+    --spacingRight: 0px;
   }
 
   a {
