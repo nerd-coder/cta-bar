@@ -4,8 +4,8 @@ main {
   position: fixed;
   overflow: hidden;
   bottom: var(--spacingBottom);
-  left: 0;
-  right: 0;
+  left: var(--spacingLeft);
+  right: var(--spacingRight);
   width: 100%;
   border-top: 1px solid var(--colorT7);
   z-index: var(--zIndex);
