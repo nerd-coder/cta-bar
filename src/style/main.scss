@@ -5,7 +5,7 @@ main {
   overflow: hidden;
   bottom: var(--spacingBottom);
   left: var(--spacingLeft);
-  right: var(--spacingRight);
+  right: 0px;
   width: 100%;
   border-top: 1px solid var(--colorT7);
   z-index: var(--zIndex);
@@ -27,6 +27,7 @@ main {
   @media screen and (min-width: 640px) {
     top: var(--spacingTop);
     left: unset;
+    right: var(--spacingRight);
     bottom: unset;
     width: auto;
     border-top: none;
