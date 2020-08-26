@@ -67,6 +67,8 @@ CSS Variables you can use to custom the component
 | `--zIndex`        | `1000`                           |
 | `--spacingBottom` | `0px`                            |
 | `--spacingTop`    | `15vh`                           |
+| `--spacingRight`  | `0px`                            |
+| `--spacingLeft`   | `0px`                            |
 
 ## Change Icon
 
