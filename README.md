@@ -2,6 +2,14 @@
 
 A web component written in Svelte
 
+Desktop
+
+![Screenshoot 01](./docs/ss01.png)
+
+Mobile
+
+![Screenshoot 02](./docs/ss02.png)
+
 ---
 
 ## How to Use
