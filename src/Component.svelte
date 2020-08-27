@@ -7,6 +7,8 @@
   import WhatsAppSvg from './img/whatsapp.svg'
   import WeChatSvg from './img/wechat.svg'
   import LineSvg from './img/line.svg'
+  import NextSvg from './img/next.svg'
+import type svelte from 'rollup-plugin-svelte'
 
   const isTruthly = (s: string) => s == 'true'
 
@@ -128,6 +130,9 @@
         <slot name={slot}>
           <Icon />
         </slot>
+        <div class="label labelM ">
+          {label}
+        </div>
       </a>
     {/each}
   </section>
