@@ -6,6 +6,7 @@
   import PhoneSvg from './img/phone.svg'
   import WhatsAppSvg from './img/whatsapp.svg'
   import WeChatSvg from './img/wechat.svg'
+  import LineSvg from './img/line.svg'
 
   const isTruthly = (s: string) => s == 'true'
 
@@ -14,21 +15,25 @@
   export let wechat = 'true'
   export let whatsapp = 'true'
   export let zalo = 'true'
+  export let line = 'true'
   // Order
   export let order_phone = '0'
   export let order_wechat = '1'
   export let order_whatsapp = '2'
-  export let order_zalo = '3'
+  export let order_line ='3'
+  export let order_zalo = '4'
   // Label
   export let label_phone = 'CALL US'
   export let label_wechat = 'WE CHAT'
   export let label_whatsapp = 'WHATS APP'
   export let label_zalo = 'ZALO'
+  export let label_line = 'LINE'
   // Link
   export let link_phone = 'tel:+84999999999'
   export let link_wechat = 'https://wechat.com'
   export let link_whatsapp = 'https://whatsapp.com'
   export let link_zalo = 'https://zalo.me'
+  export let link_line = 'https://line.me'
 
   $: data = [
     {
@@ -63,13 +68,21 @@
       order: +order_zalo,
       Icon: ZaloSvg,
     },
+    {
+      visible: isTruthly(line),
+      label: label_line,
+      link: link_line,
+      slot: 'line',
+      order: +order_line,
+      Icon: LineSvg,
+    },
   ]
     .filter(z => z.visible)
     .sort(sortBy('order'))
 
   let active: number = null
   const clearActive = () => (active = null)
-  const activeSetters = [0, 1, 2, 3].map(i => () => (active = i))
+  const activeSetters = [0, 1, 2, 3, 4].map(i => () => (active = i))
 </script>
 
 <style lang="scss">
