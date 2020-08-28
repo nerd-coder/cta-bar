@@ -7,7 +7,8 @@ section {
   position: relative;
 
   display: grid;
-  grid: 1fr / auto-flow 1fr;
+  grid: 1fr / auto-flow minmax(90px , 1fr);
+  gap: 10px;
 
   &.key {
     height: 70px;
@@ -17,7 +18,7 @@ section {
       display: flex;
       flex-direction: column;
       scroll-snap-align: start;
-      min-width: calc(320px / 3);
+      // min-width: calc(320px / 3);
     }
     .labelM {
       margin-top: 10px;
