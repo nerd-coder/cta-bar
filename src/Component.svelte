@@ -1,5 +1,7 @@
 <script lang="ts">
   import { scroll } from './script/useScroll'
+  // import {onScroll} from './script/scrollMobile'
+
   import sortBy from './script/sortBy'
 
   import ZaloSvg from './img/zalo.svg'
@@ -8,7 +10,7 @@
   import WeChatSvg from './img/wechat.svg'
   import LineSvg from './img/line.svg'
   import NextSvg from './img/next.svg'
-import type svelte from 'rollup-plugin-svelte'
+  import type svelte from 'rollup-plugin-svelte'
 
   const isTruthly = (s: string) => s == 'true'
 
@@ -119,7 +121,7 @@ import type svelte from 'rollup-plugin-svelte'
 
 <!-- MAIN -->
 <main class:mobileHidden={$scroll.down} on:mouseleave={clearActive}>
-  <section class="key">
+  <section class="key" >
     {#each data as { label, link, slot, Icon }, i (slot)}
       <a
         class="icon"
@@ -136,12 +138,12 @@ import type svelte from 'rollup-plugin-svelte'
       </a>
     {/each}
   </section>
-  <div class="btnNext">
-    <div id="iconNext" class="iconNext">
+  <div class="btnNext" id="iconNext">
+    <div  class="iconNext">
     </div>
   </div>
-  <div class="btnBack">
-    <div id="iconBack" class="iconBack">
+  <div class="btnBack" id="iconBack">
+    <div  class="iconBack">
     </div>
   </div>
 
