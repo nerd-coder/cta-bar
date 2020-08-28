@@ -138,14 +138,14 @@
       </a>
     {/each}
   </section>
-  <div class="btnNext" id="iconNext">
+  <!-- <div class="btnNext" id="iconNext">
     <div  class="iconNext">
     </div>
   </div>
   <div class="btnBack" id="iconBack">
     <div  class="iconBack">
     </div>
-  </div>
+  </div> -->
 
   <section class="side">
     {#each data as { label, link, slot, Icon }, i (slot)}
