@@ -136,6 +136,14 @@ import type svelte from 'rollup-plugin-svelte'
       </a>
     {/each}
   </section>
+  <div class="btnNext">
+    <div id="iconNext" class="iconNext">
+    </div>
+  </div>
+  <div class="btnBack">
+    <div id="iconBack" class="iconBack">
+    </div>
+  </div>
 
   <section class="side">
     {#each data as { label, link, slot, Icon }, i (slot)}
@@ -149,7 +157,6 @@ import type svelte from 'rollup-plugin-svelte'
       </a>
     {/each}
   </section>
-
   <!-- WORK_AROUND -->
   <i class="icon label active" style="display: none">
     <slot>
