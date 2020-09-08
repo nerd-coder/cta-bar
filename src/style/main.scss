@@ -61,6 +61,7 @@ main {
       background-color: var(--bgColorT7);
       box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
       right: 200px;
+      animation: OpenPopUp .5s ease;
       .sub {
         display: inline;
         text-align: center;
@@ -73,5 +74,13 @@ main {
     &.hide {
       display: none;
     }
+  }
+}
+@keyframes OpenPopUp{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
   }
 }
