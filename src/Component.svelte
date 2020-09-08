@@ -4,7 +4,6 @@
   import useScroll, { scroll } from './script/useScroll'
   import { useMScroll } from './script/stores'
   import sortBy from './script/sortBy'
-  // import { QRCode } from './script/qrcode'
 
   import ZaloSvg from './img/zalo.svg'
   import PhoneSvg from './img/phone.svg'

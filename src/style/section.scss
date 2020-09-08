@@ -68,11 +68,11 @@ section {
       height: 100%;
       display: flex;
       align-items: center;
+      justify-content: center;
       flex-direction: column;
       transform: translateX(0px);
       @include mixin.transitionFor(0.8s, transform, opacity);
 
-      padding: 20px 20px;
       color: var(--bgColorT7);
       background-color: var(--color);
       border-radius: 4px 0 0 4px;
@@ -83,7 +83,6 @@ section {
         font-family: var(--font);
         font-size: 12px;
         text-transform: uppercase;
-        margin-top: 40px;
       }
       &.hidePop {
         transform: translateX(500px);
