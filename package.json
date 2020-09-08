@@ -49,5 +49,7 @@
   "browserslist": [
     "defaults"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "qrcode": "^1.4.4"
+  }
 }

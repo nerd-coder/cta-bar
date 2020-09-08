@@ -1,4 +1,6 @@
 <script lang="ts">
+  import QRCode from 'qrcode'
+
   import useScroll, { scroll } from './script/useScroll'
   import { useMScroll } from './script/stores'
   import sortBy from './script/sortBy'
@@ -46,8 +48,9 @@
   let scrollArea = null
 
   let displayPopup = false
-  let activePopup = ''
+  let textPopup = ''
   let popUp = ''
+  let canvas = null
 
   $: data = [
     {
@@ -97,6 +100,28 @@
   let active: number = null
   const clearActive = () => (active = null)
   const activeSetters = [0, 1, 2, 3, 4].map(i => () => (active = i))
+
+  function showQrCode(link) {
+    QRCode.toCanvas(canvas, link, function (error) {
+      if (error) console.log(error)
+      console.log('success!')
+    })
+  }
+
+  function shouldPopup(i) {
+    if (i === 1 && window.innerWidth >= 768) return true
+    return false
+  }
+
+  function togglePopup(i, link) {
+    textPopup = label_wechat
+    if (!displayPopup) {
+      displayPopup = true
+      showQrCode(link)
+    } else {
+      displayPopup = false
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -134,47 +159,44 @@
   <section
     class="key"
     bind:this={scrollArea}
-    on:scroll={useMScroll(scrollArea, itemElm[1],itemElm[4], back, next)}>
+    on:scroll={() => useMScroll(scrollArea, itemElm[1], itemElm[4], back, next)}>
     {#each data as { label, link, slot, Icon }, i (slot)}
-      <div
+      <a
         class="icon"
         bind:this={itemElm[i]}
         alt={label}
+        href={link}
         class:active={active == i}
         on:mouseover={activeSetters[i]}
         on:click={e => {
-          if (!displayPopup) {
-            displayPopup = !displayPopup
-            activePopup = label
+          if (!shouldPopup(i)){
+
             return
-          } else if (activePopup === label) {
-            displayPopup = !displayPopup
-            return
-          }
-          activePopup = label
+          } 
+          e.preventDefault()
+          togglePopup(i, link)
         }}>
         <slot name={slot}>
           <Icon />
         </slot>
         <div class="label labelM">{label}</div>
-      </div>
+      </a>
     {/each}
   </section>
   <div class={displayPopup ? 'popUp' : 'popUp hide'}>
-    <img
-      class="qrCode"
-      src="https://www.qrcode-monkey.com/img/default-preview-qr.svg"
-      alt="qrcode" />
-    <p>Scan to log in to {activePopup}</p>
-    <p>
-      Tip: Web WeChat requires the use browser cookies to help you log in to allow the web
-      application to function.
-    </p>
+    <canvas bind:this={canvas} />
+    <p class="sub">Scan to log in to {textPopup}</p>
   </div>
-  <div class="btnBack hide" bind:this={back} on:click={() => scrollArea.scrollTo({left: 0,behavior: 'smooth'})}>
+  <div
+    class="btnBack hide"
+    bind:this={back}
+    on:click={() => scrollArea.scrollTo({ left: 0, behavior: 'smooth' })}>
     <div class="iconBack" />
   </div>
-  <div class="btnNext" bind:this={next} on:click={() => scrollArea.scrollTo({left: 500,behavior: 'smooth'})}>
+  <div
+    class="btnNext"
+    bind:this={next}
+    on:click={() => scrollArea.scrollTo({ left: 500, behavior: 'smooth' })}>
     <div class="iconNext" />
   </div>
   <section class="side">

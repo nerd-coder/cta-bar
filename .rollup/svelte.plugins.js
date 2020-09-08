@@ -20,6 +20,6 @@ export default () => [
   svelte({ dev: !IS_PROD, customElement: true, preprocess }),
   svelteSVG(),
   commonjs(),
-  nodeResolve({ browser: true, dedupe: ['svelte'] }),
+  nodeResolve({ browser: true, dedupe: ['svelte'], preferBuiltins: false }),
   typescript({ sourceMap: !IS_PROD }),
 ]
