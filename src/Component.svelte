@@ -49,7 +49,7 @@
 
   let displayPopup = false
   let textPopup = ''
-  let popUp = ''
+  let isPopup = false
   let canvas = null
 
   $: data = [
@@ -119,6 +119,7 @@
       displayPopup = true
       showQrCode(link)
     } else {
+      isPopup = false
       displayPopup = false
     }
   }
@@ -170,9 +171,9 @@
         on:mouseover={activeSetters[i]}
         on:click={e => {
           if (!shouldPopup(i)){
-
             return
           } 
+          isPopup = true
           e.preventDefault()
           togglePopup(i, link)
         }}>
@@ -183,7 +184,7 @@
       </a>
     {/each}
   </section>
-  <div class={displayPopup ? 'popUp' : 'popUp hide'}>
+  <div class={displayPopup ? 'popUp' : 'popUp hidePop'}>
     <canvas bind:this={canvas} />
     <p class="sub">Scan to log in to {textPopup}</p>
   </div>
@@ -199,7 +200,7 @@
     on:click={() => scrollArea.scrollTo({ left: 500, behavior: 'smooth' })}>
     <div class="iconNext" />
   </div>
-  <section class="side">
+  <section class={isPopup?"side pop":"side"}>
     {#each data as { label, link, slot, Icon }, i (slot)}
       <div class="label" alt={label} class:active={active == i} on:mouseover={activeSetters[i]}>
         {label}

@@ -7,7 +7,7 @@ section {
   position: relative;
 
   display: grid;
-  grid: 1fr / auto-flow minmax(90px , 1fr);
+  grid: 1fr / auto-flow minmax(90px, 1fr);
   gap: 10px;
 
   &.key {
@@ -19,7 +19,6 @@ section {
       flex-direction: column;
       scroll-snap-align: start;
       cursor: pointer;
-      // min-width: calc(320px / 3);
     }
     .labelM {
       margin-top: 10px;
@@ -32,10 +31,15 @@ section {
 
   @media screen and (min-width: 640px) {
     border-radius: 5px;
+
     padding: 8px 16px;
     grid: auto-flow 50px / 1fr;
     gap: 0;
     border: 1px solid var(--colorT7);
+
+    &.pop {
+      border-radius: 0 5px 5px 0;
+    }
 
     .labelM,
     .btnNext {
@@ -48,6 +52,9 @@ section {
       height: 100%;
       padding: 0;
       display: grid;
+      &.pop{
+        border-radius: 0;
+      }
       .icon {
         min-width: unset;
       }
@@ -64,9 +71,9 @@ section {
   justify-content: center;
   align-items: center;
   opacity: 1;
-  @include mixin.transitionFor(.2s, opacity);
+  @include mixin.transitionFor(0.2s, opacity);
 
-  &.hide{
+  &.hide {
     opacity: 0;
   }
   @media screen and (min-width: 640px) {
@@ -80,6 +87,7 @@ section {
     transform: rotate(225deg);
   }
 }
+
 .btnNext {
   position: fixed;
   right: 0;
@@ -90,7 +98,7 @@ section {
   justify-content: center;
   align-items: center;
   opacity: 1;
-  @include mixin.transitionFor(.2s, opacity);
+  @include mixin.transitionFor(0.2s, opacity);
   @media screen and (min-width: 640px) {
     display: none;
   }
@@ -102,6 +110,7 @@ section {
     transform: rotate(45deg);
   }
 }
-.hide{
+
+.hide {
   opacity: 0;
 }

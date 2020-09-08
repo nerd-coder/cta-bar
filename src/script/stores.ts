@@ -1,30 +1,17 @@
+const isInViewport = (elm) => {
+  const rect = elm.getBoundingClientRect();
+  console.log(rect)
+  return (
+      rect.top >= 0 &&
+      rect.left > 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
+
 export default function useMobileScroll(area,elmPrev,elmAfter,btnBack,btnNext){
-  const elmAfterX = elmAfter.getBoundingClientRect().x
-  if(elmAfterX >= 300){
-    btnNext.classList.remove("hide")
-  }else{
-    btnNext.classList.add("hide")
-  }
-
-  const options = {
-    root: area,
-    rootMargin: '10px',
-    threshold: 1.0
-  }
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    let isDisplay = true
-    for (const entry of entries) {
-      entry.boundingClientRect.x <= 0? isDisplay = false : isDisplay = true
-      if(isDisplay){
-        btnBack.classList.add("hide")
-        return
-      }
-      btnBack.classList.remove("hide")
-    }
-  }, options);
-  
-  observer.observe(elmPrev)
+  isInViewport(elmPrev)?btnBack.classList.add("hide"):btnBack.classList.remove("hide");
+  isInViewport(elmAfter)?btnNext.classList.add("hide"):btnNext.classList.remove("hide");
 }
 
 export const useMScroll = useMobileScroll

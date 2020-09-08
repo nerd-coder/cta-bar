@@ -31,7 +31,6 @@
     &.active {
       color: var(--bgColor);
       background-color: var(--color);
-
       svg,
       ::slotted(svg) {
         --color: var(--bgColor);

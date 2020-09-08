@@ -11,9 +11,8 @@ main {
   z-index: var(--zIndex);
   opacity: 1;
 
-  transition: 0.5s ease-in-out;
-  transition-property: bottom, opacity;
-  will-change: bottom, opacity;
+  @include mixin.transitionFor(.5s, bottom);
+
   &.mobileHidden {
     bottom: calc(var(--spacingBottom) - 100px);
     opacity: 0;
@@ -22,6 +21,7 @@ main {
       opacity: 1;
     }
   }
+
   @media screen and (min-width: 640px) {
     top: var(--spacingTop);
     left: unset;
@@ -53,15 +53,19 @@ main {
       display: flex;
       align-items: center;
       flex-direction: column;
-      height: 250px;
+      height: 252px;
+
       position: fixed;
+      right: calc(150px + var(--spacingRight));
+
+      transform: translateX(0px);
+      @include mixin.transitionFor(.8s, transform, opacity);
       padding: 20px 20px;
-      border-radius: 4px;
-      color: var(--color);
-      background-color: var(--bgColorT7);
-      box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
-      right: 200px;
-      animation: OpenPopUp .5s ease;
+
+      color: var(--bgColorT7);
+      background-color: var(--color);
+      border-radius: 4px 0 0 4px;
+      border: 1px solid var(--colorT7);
       .sub {
         display: inline;
         text-align: center;
@@ -71,16 +75,18 @@ main {
         margin-top: 40px;
       }
     }
-    &.hide {
-      display: none;
+    &.hidePop {
+      transform: translateX(500px);
+      opacity: 0;
+      @include mixin.transitionFor(.8s, transform, opacity);
     }
   }
 }
-@keyframes OpenPopUp{
-  from{
+@keyframes OpenPopUp {
+  from {
     opacity: 0;
   }
-  to{
+  to {
     opacity: 1;
   }
 }
