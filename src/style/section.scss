@@ -53,33 +53,6 @@ section {
     }
   }
 }
-
-.btnNext {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  height: 70px;
-  width: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  @include mixin.transitionFor(.2s, opacity);
-
-  &.hide{
-    opacity: 0;
-  }
-  @media screen and (min-width: 640px) {
-    display: none;
-  }
-  .iconNext {
-    width: 10px;
-    height: 10px;
-    border-top: 2px solid white;
-    border-right: 2px solid white;
-    transform: rotate(45deg);
-  }
-}
 .btnBack {
   position: fixed;
   left: 0;
@@ -91,6 +64,7 @@ section {
   align-items: center;
   opacity: 1;
   @include mixin.transitionFor(.2s, opacity);
+
   &.hide{
     opacity: 0;
   }
@@ -104,4 +78,29 @@ section {
     border-right: 2px solid white;
     transform: rotate(225deg);
   }
+}
+.btnNext {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 70px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  @include mixin.transitionFor(.2s, opacity);
+  @media screen and (min-width: 640px) {
+    display: none;
+  }
+  .iconNext {
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    transform: rotate(45deg);
+  }
+}
+.hide{
+  opacity: 0;
 }

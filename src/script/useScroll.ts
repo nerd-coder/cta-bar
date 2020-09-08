@@ -14,6 +14,7 @@ const getBodyOffset = () =>
 
 export default function useScroll() {
   let prevInfo: ScrollInfo = {}
+  
   return readable<ScrollInfo>({}, set => {
     const listener = () => {
       const bodyOffset = getBodyOffset()

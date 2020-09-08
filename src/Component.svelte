@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { scroll } from './script/useScroll'
-  // import {onScroll} from './script/scrollMobile'
-
+  import useScroll, { scroll } from './script/useScroll'
+  import { useMScroll } from './script/stores'
   import sortBy from './script/sortBy'
+  // import { QRCode } from './script/qrcode'
 
   import ZaloSvg from './img/zalo.svg'
   import PhoneSvg from './img/phone.svg'
@@ -10,6 +10,7 @@
   import WeChatSvg from './img/wechat.svg'
   import LineSvg from './img/line.svg'
   import NextSvg from './img/next.svg'
+
   import type svelte from 'rollup-plugin-svelte'
 
   const isTruthly = (s: string) => s == 'true'
@@ -24,7 +25,7 @@
   export let order_phone = '0'
   export let order_wechat = '1'
   export let order_whatsapp = '2'
-  export let order_line ='3'
+  export let order_line = '3'
   export let order_zalo = '4'
   // Label
   export let label_phone = 'CALL US'
@@ -38,6 +39,15 @@
   export let link_whatsapp = 'https://whatsapp.com'
   export let link_zalo = 'https://zalo.me'
   export let link_line = 'https://line.me'
+  const itemElm = [null, null, null, null, null]
+
+  let back = null
+  let next = null
+  let scrollArea = null
+
+  let displayPopup = false
+  let activePopup = ''
+  let popUp = ''
 
   $: data = [
     {
@@ -121,42 +131,57 @@
 
 <!-- MAIN -->
 <main class:mobileHidden={$scroll.down} on:mouseleave={clearActive}>
-  <section class="key" >
+  <section
+    class="key"
+    bind:this={scrollArea}
+    on:scroll={useMScroll(scrollArea, itemElm[1],itemElm[4], back, next)}>
     {#each data as { label, link, slot, Icon }, i (slot)}
-      <a
+      <div
         class="icon"
+        bind:this={itemElm[i]}
         alt={label}
-        href={link}
         class:active={active == i}
-        on:mouseover={activeSetters[i]}>
+        on:mouseover={activeSetters[i]}
+        on:click={e => {
+          if (!displayPopup) {
+            displayPopup = !displayPopup
+            activePopup = label
+            return
+          } else if (activePopup === label) {
+            displayPopup = !displayPopup
+            return
+          }
+          activePopup = label
+        }}>
         <slot name={slot}>
           <Icon />
         </slot>
-        <div class="label labelM ">
-          {label}
-        </div>
-      </a>
+        <div class="label labelM">{label}</div>
+      </div>
     {/each}
   </section>
-  <!-- <div class="btnNext" id="iconNext">
-    <div  class="iconNext">
-    </div>
+  <div class={displayPopup ? 'popUp' : 'popUp hide'}>
+    <img
+      class="qrCode"
+      src="https://www.qrcode-monkey.com/img/default-preview-qr.svg"
+      alt="qrcode" />
+    <p>Scan to log in to {activePopup}</p>
+    <p>
+      Tip: Web WeChat requires the use browser cookies to help you log in to allow the web
+      application to function.
+    </p>
   </div>
-  <div class="btnBack" id="iconBack">
-    <div  class="iconBack">
-    </div>
-  </div> -->
-
+  <div class="btnBack hide" bind:this={back} on:click={() => scrollArea.scrollTo({left: 0,behavior: 'smooth'})}>
+    <div class="iconBack" />
+  </div>
+  <div class="btnNext" bind:this={next} on:click={() => scrollArea.scrollTo({left: 500,behavior: 'smooth'})}>
+    <div class="iconNext" />
+  </div>
   <section class="side">
     {#each data as { label, link, slot, Icon }, i (slot)}
-      <a
-        class="label"
-        alt={label}
-        href={link}
-        class:active={active == i}
-        on:mouseover={activeSetters[i]}>
+      <div class="label" alt={label} class:active={active == i} on:mouseover={activeSetters[i]}>
         {label}
-      </a>
+      </div>
     {/each}
   </section>
   <!-- WORK_AROUND -->
