@@ -1,6 +1,5 @@
 const isInViewport = (elm) => {
   const rect = elm.getBoundingClientRect();
-  console.log(rect)
   return (
       rect.top >= 0 &&
       rect.left > 0 &&

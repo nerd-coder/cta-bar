@@ -51,6 +51,7 @@
   let textPopup = ''
   let isPopup = false
   let canvas = null
+  let isSide = false
 
   $: data = [
     {
@@ -116,9 +117,11 @@
   function togglePopup(i, link) {
     textPopup = label_wechat
     if (!displayPopup) {
+      isSide = true
       displayPopup = true
       showQrCode(link)
     } else {
+      isSide = false
       isPopup = false
       displayPopup = false
     }
@@ -156,7 +159,7 @@
 <svelte:options tag="cta-bar" />
 
 <!-- MAIN -->
-<main class:mobileHidden={$scroll.down} on:mouseleave={clearActive}>
+<main class:mobileHidden={$scroll.down} on:mouseleave={clearActive} class={isSide?'active':''}>
   <section
     class="key"
     bind:this={scrollArea}
@@ -170,9 +173,9 @@
         class:active={active == i}
         on:mouseover={activeSetters[i]}
         on:click={e => {
-          if (!shouldPopup(i)){
+          if (!shouldPopup(i)) {
             return
-          } 
+          }
           isPopup = true
           e.preventDefault()
           togglePopup(i, link)
@@ -184,10 +187,26 @@
       </a>
     {/each}
   </section>
-  <div class={displayPopup ? 'popUp' : 'popUp hidePop'}>
+  <section class={isPopup ? 'side pop' : 'side'}>
+    {#each data as { label, link, slot, Icon }, i (slot)}
+    <div class="label" alt={label} class:active={active == i} on:mouseover={activeSetters[i]}>
+      {label}
+    </div>
+    {/each}
+  </section>
+  <section class={displayPopup ? 'popUp' : 'popUp hidePop'}>
     <canvas bind:this={canvas} />
     <p class="sub">Scan to log in to {textPopup}</p>
-  </div>
+  </section>
+  <!-- WORK_AROUND -->
+  <i class="icon label active" style="display: none">
+    <slot>
+      <svg>
+        <path />
+      </svg>
+    </slot>
+  </i>
+  <!-- /WORK_AROUND -->
   <div
     class="btnBack hide"
     bind:this={back}
@@ -200,21 +219,5 @@
     on:click={() => scrollArea.scrollTo({ left: 500, behavior: 'smooth' })}>
     <div class="iconNext" />
   </div>
-  <section class={isPopup?"side pop":"side"}>
-    {#each data as { label, link, slot, Icon }, i (slot)}
-      <div class="label" alt={label} class:active={active == i} on:mouseover={activeSetters[i]}>
-        {label}
-      </div>
-    {/each}
-  </section>
-  <!-- WORK_AROUND -->
-  <i class="icon label active" style="display: none">
-    <slot>
-      <svg>
-        <path />
-      </svg>
-    </slot>
-  </i>
-  <!-- /WORK_AROUND -->
 </main>
 <!-- /MAIN -->

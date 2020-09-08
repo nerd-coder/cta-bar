@@ -11,7 +11,7 @@ main {
   z-index: var(--zIndex);
   opacity: 1;
 
-  @include mixin.transitionFor(.5s, bottom);
+  @include mixin.transitionFor(0.5s, bottom);
 
   &.mobileHidden {
     bottom: calc(var(--spacingBottom) - 100px);
@@ -31,10 +31,9 @@ main {
     border-top: none;
     display: grid;
     grid:
-      'c2 c1' 1fr
-      / 1fr 50px;
+      'c3 c2 c1' 1fr
+      / auto auto 50px;
     @include mixin.autoPlaceGridCell(2);
-
     @include mixin.onlyHoverChild;
     @include mixin.toggleSide(false);
     @include mixin.toggleSideTransition;
@@ -46,41 +45,6 @@ main {
   }
   display: flex;
   align-items: center;
-
-  .popUp {
-    display: none;
-    @media screen and (min-width: 768px) {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      height: 252px;
-
-      position: fixed;
-      right: calc(150px + var(--spacingRight));
-
-      transform: translateX(0px);
-      @include mixin.transitionFor(.8s, transform, opacity);
-      padding: 20px 20px;
-
-      color: var(--bgColorT7);
-      background-color: var(--color);
-      border-radius: 4px 0 0 4px;
-      border: 1px solid var(--colorT7);
-      .sub {
-        display: inline;
-        text-align: center;
-        font-family: var(--font);
-        font-size: 12px;
-        text-transform: uppercase;
-        margin-top: 40px;
-      }
-    }
-    &.hidePop {
-      transform: translateX(500px);
-      opacity: 0;
-      @include mixin.transitionFor(.8s, transform, opacity);
-    }
-  }
 }
 @keyframes OpenPopUp {
   from {

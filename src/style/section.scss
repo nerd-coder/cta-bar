@@ -3,7 +3,6 @@
 section {
   color: var(--color);
   background-color: var(--bgColorT7);
-  overflow: hidden;
   position: relative;
 
   display: grid;
@@ -29,6 +28,10 @@ section {
     display: none;
   }
 
+  &.popUp {
+    display: none;
+  }
+
   @media screen and (min-width: 640px) {
     border-radius: 5px;
 
@@ -49,14 +52,43 @@ section {
     &.key,
     &.side {
       overflow-x: hidden;
-      height: 100%;
+      height: auto;
       padding: 0;
       display: grid;
-      &.pop{
+      &.pop {
         border-radius: 0;
       }
       .icon {
         min-width: unset;
+      }
+    }
+    &.popUp {
+      position: relative;
+      z-index: -10;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      transform: translateX(0px);
+      @include mixin.transitionFor(0.8s, transform, opacity);
+
+      padding: 20px 20px;
+      color: var(--bgColorT7);
+      background-color: var(--color);
+      border-radius: 4px 0 0 4px;
+      border: 1px solid var(--colorT7);
+      .sub {
+        display: inline;
+        text-align: center;
+        font-family: var(--font);
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-top: 40px;
+      }
+      &.hidePop {
+        transform: translateX(500px);
+        opacity: 0;
+        @include mixin.transitionFor(0.8s, transform, opacity);
       }
     }
   }
