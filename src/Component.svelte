@@ -102,7 +102,7 @@
   const activeSetters = [0, 1, 2, 3, 4].map(i => () => (active = i))
 
   function showQrCode(link) {
-    QRCode.toCanvas(canvas, link, function (error) {
+    QRCode.toCanvas(canvas,link, function (error) {
       if (error) console.log(error)
       console.log('success!')
     })
@@ -158,7 +158,7 @@
 <svelte:options tag="cta-bar" />
 
 <!-- MAIN -->
-<main class:mobileHidden={$scroll.down} on:mouseleave={clearActive} class={isSide?'active':''}>
+<main class:mobileHidden={$scroll.down} on:mouseleave={clearActive} class={isSide ? 'active' : ''}>
   <section
     class="key"
     bind:this={scrollArea}
@@ -188,9 +188,22 @@
   </section>
   <section class={isPopup ? 'side pop' : 'side'}>
     {#each data as { label, link, slot, Icon }, i (slot)}
-    <div class="label" alt={label} class:active={active == i} on:mouseover={activeSetters[i]}>
-      {label}
-    </div>
+      <a
+        class="label"
+        alt={label}
+        href={link}
+        class:active={active == i}
+        on:mouseover={activeSetters[i]}
+        on:click={e => {
+          if (!shouldPopup(i)) {
+            return
+          }
+          isPopup = true
+          e.preventDefault()
+          togglePopup(i, link)
+        }}>
+        {label}
+      </a>
     {/each}
   </section>
   <section class={displayPopup ? 'popUp' : 'popUp hidePop'}>
