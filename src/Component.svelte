@@ -208,7 +208,13 @@
     {/each}
   </section>
   <section class={displayPopup ? 'popUp' : 'popUp hidePop'}>
-    <div class="closeBtn">
+    <div
+      class="closeBtn"
+      on:click={() => {
+        displayPopup = false
+        isPopup = false
+        isSide = false
+      }}>
       <CloseSvg />
     </div>
     <canvas bind:this={canvas} />
