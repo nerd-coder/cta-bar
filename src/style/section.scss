@@ -108,6 +108,7 @@ section {
   justify-content: center;
   align-items: center;
   opacity: 1;
+  background-color: rgb(0, 0, 0, 0.3);
   @include mixin.transitionFor(0.2s, opacity);
 
   &.hide {
@@ -135,6 +136,7 @@ section {
   justify-content: center;
   align-items: center;
   opacity: 1;
+  background-color: rgb(0, 0, 0, 0.3);
   @include mixin.transitionFor(0.2s, opacity);
   @media screen and (min-width: 640px) {
     display: none;
