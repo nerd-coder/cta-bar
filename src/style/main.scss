@@ -10,7 +10,6 @@ main {
   border-top: 1px solid var(--colorT7);
   z-index: var(--zIndex);
   opacity: 1;
-
   @include mixin.transitionFor(0.5s, bottom);
 
   &.mobileHidden {

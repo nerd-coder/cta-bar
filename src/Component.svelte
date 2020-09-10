@@ -11,6 +11,7 @@
   import WeChatSvg from './img/wechat.svg'
   import LineSvg from './img/line.svg'
   import NextSvg from './img/next.svg'
+  import CloseSvg from './img/close.svg'
 
   import type svelte from 'rollup-plugin-svelte'
 
@@ -102,7 +103,7 @@
   const activeSetters = [0, 1, 2, 3, 4].map(i => () => (active = i))
 
   function showQrCode(link) {
-    QRCode.toCanvas(canvas,link, function (error) {
+    QRCode.toCanvas(canvas, link, function (error) {
       if (error) console.log(error)
       console.log('success!')
     })
@@ -207,6 +208,9 @@
     {/each}
   </section>
   <section class={displayPopup ? 'popUp' : 'popUp hidePop'}>
+    <div class="closeBtn">
+      <CloseSvg />
+    </div>
     <canvas bind:this={canvas} />
     <p class="sub">Scan to log in to {textPopup}</p>
   </section>
