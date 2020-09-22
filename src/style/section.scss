@@ -62,6 +62,7 @@ section {
         min-width: unset;
       }
     }
+
     &.popUp {
       position: relative;
       z-index: -10;
@@ -98,10 +99,11 @@ section {
     }
   }
 }
+
 .btnBack {
   position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: calc(0 + var(--spacingBottom));
   height: 70px;
   width: 20px;
   display: flex;
@@ -129,7 +131,7 @@ section {
 .btnNext {
   position: fixed;
   right: 0;
-  bottom: 0;
+  bottom: calc(0 + var(--spacingBottom));
   height: 70px;
   width: 20px;
   display: flex;
