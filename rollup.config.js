@@ -4,12 +4,7 @@ const { nodeResolve } = require('@rollup/plugin-node-resolve')
 const svelteSVG = require('rollup-plugin-svelte-svg')
 const typescript = require('@rollup/plugin-typescript')
 
-const devPlugins = require('./.rollup/dev.plugins')
-const prodPlugins = require('./.rollup/prod.plugins')
-
 const IS_PROD = !process.env.ROLLUP_WATCH
-
-IS_PROD && console.log('Making bundle for Production...')
 
 module.exports = {
   input: 'src/main.ts',
@@ -19,7 +14,7 @@ module.exports = {
     svelteSVG(),
     commonjs(),
     nodeResolve({ browser: true, preferBuiltins: false }),
-    typescript(),
-    ...(IS_PROD ? prodPlugins() : devPlugins()),
+    typescript({ sourceMap: !IS_PROD }),
+    ...(IS_PROD ? require('./.rollup/prod.plugins')() : require('./.rollup/dev.plugins')()),
   ],
 }

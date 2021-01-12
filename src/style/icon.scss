@@ -8,13 +8,13 @@
   justify-content: center;
   cursor: pointer;
 
-  svg,
-  ::slotted(svg) {
+  :global(svg),
+  :global(::slotted(svg)) {
     width: 32px;
     height: 32px;
   }
 
-  svg path {
+  :global(svg) :global(path) {
     fill: var(--color);
     @include mixin.transitionFor(fill 0.3s ease);
   }
@@ -22,8 +22,8 @@
   @media screen and (min-width: 640px) {
     @include mixin.transitionFor(0.3s ease, background-color, color);
 
-    svg,
-    ::slotted(svg) {
+    :global(svg),
+    :global(::slotted(svg)) {
       width: 24px;
       height: 24px;
     }
@@ -32,8 +32,9 @@
     &.active {
       color: var(--bgColor);
       background-color: var(--color);
-      svg,
-      ::slotted(svg) {
+
+      :global(svg),
+      :global(::slotted(svg)) {
         --color: var(--bgColor);
       }
     }

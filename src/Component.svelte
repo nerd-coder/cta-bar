@@ -1,7 +1,6 @@
 <script lang="ts">
   import QRCode from 'qrcode'
-
-  import { scroll } from './script/useScroll'
+  import IntersectionObserver from 'svelte-intersection-observer'
   import { useMScroll } from './script/stores'
   import sortBy from './script/sortBy'
 
@@ -10,7 +9,6 @@
   import WhatsAppSvg from './img/whatsapp.svg'
   import WeChatSvg from './img/wechat.svg'
   import LineSvg from './img/line.svg'
-  import NextSvg from './img/next.svg'
   import CloseSvg from './img/close.svg'
 
   const isTruthly = (s: string) => s == 'true'
@@ -50,6 +48,13 @@
   let isPopup = false
   let canvas = null
   let isSide = false
+  let scrollY = 0
+  let _scrollY = 0
+  let isScrollUp = false
+  $: {
+    isScrollUp = _scrollY > scrollY
+    _scrollY = scrollY
+  }
 
   $: data = [
     {
@@ -155,9 +160,10 @@
 </style>
 
 <svelte:options tag="cta-bar" />
+<svelte:window bind:scrollY />
 
 <!-- MAIN -->
-<main class:mobileHidden={$scroll.down} on:mouseleave={clearActive} class:active={isSide}>
+<main class:mobileHidden={isScrollUp} on:mouseleave={clearActive} class:active={isSide}>
   <section
     class="key"
     bind:this={scrollArea}
@@ -216,15 +222,6 @@
     <canvas bind:this={canvas} />
     <p class="sub">Scan to log in to {textPopup}</p>
   </section>
-  <!-- WORK_AROUND -->
-  <i class="icon label active" style="display: none">
-    <slot>
-      <svg>
-        <path />
-      </svg>
-    </slot>
-  </i>
-  <!-- /WORK_AROUND -->
   <div
     class="btnBack hide"
     bind:this={back}
