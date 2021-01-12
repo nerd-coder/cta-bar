@@ -1,6 +1,5 @@
 <script lang="ts">
   import QRCode from 'qrcode'
-  import IntersectionObserver from 'svelte-intersection-observer'
   import { useMScroll } from './script/stores'
   import sortBy from './script/sortBy'
 
