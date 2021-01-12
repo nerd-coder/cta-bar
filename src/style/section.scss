@@ -40,12 +40,7 @@ section {
     gap: 0;
     border: 1px solid var(--colorT7);
 
-    &.pop {
-      border-radius: 0 5px 5px 0;
-    }
-
-    .labelM,
-    .btnNext {
+    .labelM {
       display: none;
     }
 
@@ -55,12 +50,6 @@ section {
       height: auto;
       padding: 0;
       display: grid;
-      &.pop {
-        border-radius: 0;
-      }
-      .icon {
-        min-width: unset;
-      }
     }
 
     &.popUp {

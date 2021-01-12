@@ -1,5 +1,5 @@
-import { terser } from 'rollup-plugin-terser'
-import cleaner from 'rollup-plugin-cleaner'
-import analyze from 'rollup-plugin-analyzer'
+const { terser } = require('rollup-plugin-terser')
+const cleaner = require('rollup-plugin-cleaner')
+const analyze = require('rollup-plugin-analyzer')
 
-export default () => [cleaner({ targets: ['./dist'] }), terser(), analyze()]
+module.exports = () => [cleaner({ targets: ['./dist'] }), terser(), analyze()]

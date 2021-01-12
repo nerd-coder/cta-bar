@@ -1,8 +1,8 @@
-import html from 'rollup-plugin-generate-html-template'
-import livereload from 'rollup-plugin-livereload'
-import serve from 'rollup-plugin-serve'
+const html = require('rollup-plugin-generate-html-template')
+const livereload = require('rollup-plugin-livereload')
+const serve = require('rollup-plugin-serve')
 
-export default () => [
+module.exports = () => [
   html({ template: 'src/template.html', target: 'index.html', attrs: ['async', 'defer'] }),
   serve('dist'),
   livereload('dist'),

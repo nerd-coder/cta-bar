@@ -1,13 +1,25 @@
-import sveltePlugins from './.rollup/svelte.plugins'
-import devPlugins from './.rollup/dev.plugins'
-import prodPlugins from './.rollup/prod.plugins'
+const svelte = require('rollup-plugin-svelte')
+const commonjs = require('@rollup/plugin-commonjs')
+const { nodeResolve } = require('@rollup/plugin-node-resolve')
+const svelteSVG = require('rollup-plugin-svelte-svg')
+const typescript = require('@rollup/plugin-typescript')
+
+const devPlugins = require('./.rollup/dev.plugins')
+const prodPlugins = require('./.rollup/prod.plugins')
 
 const IS_PROD = !process.env.ROLLUP_WATCH
 
 IS_PROD && console.log('Making bundle for Production...')
 
-export default {
+module.exports = {
   input: 'src/main.ts',
   output: { format: 'iife', dir: 'dist', sourcemap: !IS_PROD },
-  plugins: [...sveltePlugins(), ...(IS_PROD ? prodPlugins() : devPlugins())],
+  plugins: [
+    svelte(require('./svelte.config')),
+    svelteSVG(),
+    commonjs(),
+    nodeResolve({ browser: true, preferBuiltins: false }),
+    typescript(),
+    ...(IS_PROD ? prodPlugins() : devPlugins()),
+  ],
 }

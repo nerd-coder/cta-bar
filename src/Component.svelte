@@ -1,7 +1,7 @@
 <script lang="ts">
   import QRCode from 'qrcode'
 
-  import useScroll, { scroll } from './script/useScroll'
+  import { scroll } from './script/useScroll'
   import { useMScroll } from './script/stores'
   import sortBy from './script/sortBy'
 
@@ -12,8 +12,6 @@
   import LineSvg from './img/line.svg'
   import NextSvg from './img/next.svg'
   import CloseSvg from './img/close.svg'
-
-  import type svelte from 'rollup-plugin-svelte'
 
   const isTruthly = (s: string) => s == 'true'
 
@@ -151,7 +149,7 @@
     @include mixin.anchorReset();
   }
 
-  * {
+  :global(*) {
     box-sizing: border-box;
   }
 </style>
@@ -159,7 +157,7 @@
 <svelte:options tag="cta-bar" />
 
 <!-- MAIN -->
-<main class:mobileHidden={$scroll.down} on:mouseleave={clearActive} class={isSide ? 'active' : ''}>
+<main class:mobileHidden={$scroll.down} on:mouseleave={clearActive} class:active={isSide}>
   <section
     class="key"
     bind:this={scrollArea}
@@ -180,9 +178,7 @@
           e.preventDefault()
           togglePopup(i, link)
         }}>
-        <slot name={slot}>
-          <Icon />
-        </slot>
+        <Icon />
         <div class="label labelM">{label}</div>
       </a>
     {/each}
