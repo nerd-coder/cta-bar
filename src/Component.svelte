@@ -1,3 +1,5 @@
+<svelte:options tag="cta-bar" />
+
 <script lang="ts">
   import QRCode from 'qrcode'
   import { useMScroll } from './script/stores'
@@ -130,35 +132,6 @@
   }
 </script>
 
-<style lang="scss">
-  @use 'style/mixin';
-  @use 'style/main';
-  @use 'style/section';
-  @use 'style/icon';
-
-  :host {
-    --font: 'Open Sans', Arial, sans-serif;
-    --color: #ffffff;
-    --colorT7: #ffffffb3;
-    --bgColor: #1b2127;
-    --bgColorT7: #1b2127b3;
-    --zIndex: 1000;
-    --spacingBottom: 0px;
-    --spacingTop: 15vh;
-    --spacingLeft: unset;
-    --spacingRight: 0px;
-  }
-
-  a {
-    @include mixin.anchorReset();
-  }
-
-  :global(*) {
-    box-sizing: border-box;
-  }
-</style>
-
-<svelte:options tag="cta-bar" />
 <svelte:window bind:scrollY />
 
 <!-- MAIN -->
@@ -166,7 +139,8 @@
   <section
     class="key"
     bind:this={scrollArea}
-    on:scroll={() => useMScroll(scrollArea, itemElm[1], itemElm[4], back, next)}>
+    on:scroll={() => useMScroll(scrollArea, itemElm[1], itemElm[4], back, next)}
+  >
     {#each data as { label, link, slot, Icon }, i (slot)}
       <a
         class="icon"
@@ -215,7 +189,8 @@
         displayPopup = false
         isPopup = false
         isSide = false
-      }}>
+      }}
+    >
       <CloseSvg />
     </div>
     <canvas bind:this={canvas} />
@@ -224,14 +199,48 @@
   <div
     class="btnBack hide"
     bind:this={back}
-    on:click={() => scrollArea.scrollTo({ left: 0, behavior: 'smooth' })}>
+    on:click={() => scrollArea.scrollTo({ left: 0, behavior: 'smooth' })}
+  >
     <div class="iconBack" />
   </div>
   <div
     class="btnNext"
     bind:this={next}
-    on:click={() => scrollArea.scrollTo({ left: 500, behavior: 'smooth' })}>
+    on:click={() => scrollArea.scrollTo({ left: 500, behavior: 'smooth' })}
+  >
     <div class="iconNext" />
   </div>
 </main>
+
+{#if false}
+  <div class="icon label"><svg><path /></svg></div>
+{/if}
+
 <!-- /MAIN -->
+<style lang="scss">
+  @use 'style/mixin';
+  @use 'style/main';
+  @use 'style/section';
+  @use 'style/icon';
+
+  :host {
+    --font: 'Open Sans', Arial, sans-serif;
+    --color: #ffffff;
+    --colorT7: #ffffffb3;
+    --bgColor: #1b2127;
+    --bgColorT7: #1b2127b3;
+    --zIndex: 1000;
+    --spacingBottom: 0px;
+    --spacingTop: 15vh;
+    --spacingLeft: unset;
+    --spacingRight: 0px;
+  }
+
+  a {
+    @include mixin.anchorReset();
+  }
+
+  :global(*) {
+    box-sizing: border-box;
+  }
+</style>

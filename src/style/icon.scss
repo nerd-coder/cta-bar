@@ -8,13 +8,13 @@
   justify-content: center;
   cursor: pointer;
 
-  :global(svg),
-  :global(::slotted(svg)) {
+  svg,
+  ::slotted(svg) {
     width: 32px;
     height: 32px;
   }
 
-  :global(svg) :global(path) {
+  svg path {
     fill: var(--color);
     @include mixin.transitionFor(fill 0.3s ease);
   }

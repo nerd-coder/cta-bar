@@ -90,7 +90,7 @@ section {
 }
 
 .btnBack {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: calc(0 + var(--spacingBottom));
   height: 70px;
@@ -118,7 +118,7 @@ section {
 }
 
 .btnNext {
-  position: fixed;
+  position: absolute;
   right: 0;
   bottom: calc(0 + var(--spacingBottom));
   height: 70px;
