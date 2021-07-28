@@ -149,6 +149,7 @@
         href={link}
         class:active={active == i}
         on:mouseover={activeSetters[i]}
+        on:focus={activeSetters[i]}
         on:click={e => {
           if (!shouldPopup(i)) {
             return
@@ -156,7 +157,8 @@
           isPopup = true
           e.preventDefault()
           togglePopup(i, link)
-        }}>
+        }}
+      >
         <Icon />
         <div class="label labelM">{label}</div>
       </a>
@@ -170,6 +172,7 @@
         href={link}
         class:active={active == i}
         on:mouseover={activeSetters[i]}
+        on:focus={activeSetters[i]}
         on:click={e => {
           if (!shouldPopup(i)) {
             return
@@ -177,7 +180,8 @@
           isPopup = true
           e.preventDefault()
           togglePopup(i, link)
-        }}>
+        }}
+      >
         {label}
       </a>
     {/each}
