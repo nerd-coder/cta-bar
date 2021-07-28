@@ -1,7 +1,7 @@
 const svelte = require('rollup-plugin-svelte')
 const commonjs = require('@rollup/plugin-commonjs')
 const { nodeResolve } = require('@rollup/plugin-node-resolve')
-const svelteSVG = require('rollup-plugin-svelte-svg')
+const { svelteSVG } = require('rollup-plugin-svelte-svg')
 const typescript = require('@rollup/plugin-typescript')
 
 const IS_PROD = !process.env.ROLLUP_WATCH
